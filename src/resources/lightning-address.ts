@@ -6,12 +6,12 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
-export class LnAddress extends APIResource {
+export class LightningAddress extends APIResource {
   /**
    * Generate a payment request for a Lightning Address.
    */
   createCharge(
-    params: LnAddressCreateChargeParams | null | undefined = {},
+    params: LightningAddressCreateChargeParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
@@ -29,7 +29,7 @@ export class LnAddress extends APIResource {
    * Send instant Bitcoin payments to any Lightning Address.
    */
   sendPayment(
-    params: LnAddressSendPaymentParams | null | undefined = {},
+    params: LightningAddressSendPaymentParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
@@ -48,7 +48,7 @@ export class LnAddress extends APIResource {
    */
   validate(
     address: string,
-    params: LnAddressValidateParams | null | undefined = {},
+    params: LightningAddressValidateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey } = params ?? {};
@@ -62,7 +62,7 @@ export class LnAddress extends APIResource {
   }
 }
 
-export interface LnAddressCreateChargeParams {
+export interface LightningAddressCreateChargeParams {
   /**
    * Body param: The amount for the Charge -> in millisatoshis
    */
@@ -84,7 +84,7 @@ export interface LnAddressCreateChargeParams {
   apikey?: string;
 }
 
-export interface LnAddressSendPaymentParams {
+export interface LightningAddressSendPaymentParams {
   /**
    * Body param: The amount for the Payment -> in millisatoshis
    */
@@ -116,17 +116,17 @@ export interface LnAddressSendPaymentParams {
   apikey?: string;
 }
 
-export interface LnAddressValidateParams {
+export interface LightningAddressValidateParams {
   /**
    * ZBD Project API Key
    */
   apikey?: string;
 }
 
-export declare namespace LnAddress {
+export declare namespace LightningAddress {
   export {
-    type LnAddressCreateChargeParams as LnAddressCreateChargeParams,
-    type LnAddressSendPaymentParams as LnAddressSendPaymentParams,
-    type LnAddressValidateParams as LnAddressValidateParams,
+    type LightningAddressCreateChargeParams as LightningAddressCreateChargeParams,
+    type LightningAddressSendPaymentParams as LightningAddressSendPaymentParams,
+    type LightningAddressValidateParams as LightningAddressValidateParams,
   };
 }

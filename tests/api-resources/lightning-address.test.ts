@@ -7,10 +7,10 @@ const client = new ZbdPayments({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource charges', () => {
+describe('resource lightningAddress', () => {
   // skipped: tests are disabled for the time being
-  test.skip('create', async () => {
-    const responsePromise = client.charges.create();
+  test.skip('createCharge', async () => {
+    const responsePromise = client.lightningAddress.createCharge();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,16 +21,39 @@ describe('resource charges', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('create: request options and params are passed correctly', async () => {
+  test.skip('createCharge: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.charges.create(
+      client.lightningAddress.createCharge(
+        { amount: 'string', description: '‎', lnaddress: 'string', apikey: 'apikey' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ZbdPayments.NotFoundError);
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('sendPayment', async () => {
+    const responsePromise = client.lightningAddress.sendPayment();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('sendPayment: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.lightningAddress.sendPayment(
         {
           amount: 'string',
           callbackUrl: '‎',
-          description: 'string',
-          expiresIn: 0,
+          comment: '‎',
           internalId: '‎',
+          lnAddress: 'string',
           apikey: 'apikey',
         },
         { path: '/_stainless_unknown_path' },
@@ -39,8 +62,8 @@ describe('resource charges', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieve', async () => {
-    const responsePromise = client.charges.retrieve('id');
+  test.skip('validate', async () => {
+    const responsePromise = client.lightningAddress.validate('address');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -51,10 +74,10 @@ describe('resource charges', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieve: request options and params are passed correctly', async () => {
+  test.skip('validate: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.charges.retrieve('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
+      client.lightningAddress.validate('address', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 });

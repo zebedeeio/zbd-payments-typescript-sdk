@@ -30,7 +30,7 @@ const client = new ZbdPayments({
 });
 
 async function main() {
-  await client.gamertag.createCharge();
+  await client.gamertags.createCharge();
 }
 
 main();
@@ -49,7 +49,7 @@ const client = new ZbdPayments({
 });
 
 async function main() {
-  await client.gamertag.createCharge();
+  await client.gamertags.createCharge();
 }
 
 main();
@@ -66,7 +66,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const response = await client.gamertag.createCharge().catch(async (err) => {
+  const response = await client.gamertags.createCharge().catch(async (err) => {
     if (err instanceof ZbdPayments.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
@@ -109,7 +109,7 @@ const client = new ZbdPayments({
 });
 
 // Or, configure per-request:
-await client.gamertag.createCharge({
+await client.gamertags.createCharge({
   maxRetries: 5,
 });
 ```
@@ -126,7 +126,7 @@ const client = new ZbdPayments({
 });
 
 // Override per-request:
-await client.gamertag.createCharge({
+await client.gamertags.createCharge({
   timeout: 5 * 1000,
 });
 ```
@@ -149,11 +149,11 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new ZbdPayments();
 
-const response = await client.gamertag.createCharge().asResponse();
+const response = await client.gamertags.createCharge().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: result, response: raw } = await client.gamertag.createCharge().withResponse();
+const { data: result, response: raw } = await client.gamertags.createCharge().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(result);
 ```

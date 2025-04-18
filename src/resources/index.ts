@@ -1,33 +1,45 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Charges, type ChargeCreateParams, type ChargeRetrieveParams } from './charges';
-export { DecodeInvoice, type DecodeInvoiceDecodeParams } from './decode-invoice';
-export { EmailPayments, type EmailPaymentSendPaymentParams } from './email-payments';
+export { EmailPayments, type EmailPaymentSendParams } from './email-payments';
 export {
-  Gamertag,
+  Gamertags,
   type GamertagCreateChargeParams,
   type GamertagRetrieveByGamertagParams,
   type GamertagRetrieveByZbdIDParams,
   type GamertagRetrievePaymentParams,
   type GamertagSendPaymentParams,
-} from './gamertag';
+} from './gamertags';
 export { InternalTransfer, type InternalTransferInitiateParams } from './internal-transfer';
 export { KeysendPayments, type KeysendPaymentSendParams } from './keysend-payments';
 export {
-  LnAddress,
-  type LnAddressCreateChargeParams,
-  type LnAddressSendPaymentParams,
-  type LnAddressValidateParams,
-} from './ln-address';
-export { Oauth2, type Oauth2RetrieveUserDataParams, type Oauth2RetrieveWalletDataParams } from './oauth2';
-export { Payments, type PaymentRetrieveParams, type PaymentSendParams } from './payments';
+  LightningAddress,
+  type LightningAddressCreateChargeParams,
+  type LightningAddressSendPaymentParams,
+  type LightningAddressValidateParams,
+} from './lightning-address';
 export {
-  StaticCharges,
-  type StaticChargeCreateParams,
-  type StaticChargeRetrieveParams,
-  type StaticChargeUpdateParams,
-} from './static-charges';
-export { Utils, type UtilCheckIPSupportParams, type UtilListProdIPsParams } from './utils';
+  LightningCharges,
+  type LightningChargeCreateParams,
+  type LightningChargeRetrieveParams,
+} from './lightning-charges';
+export {
+  LightningPayments,
+  type LightningPaymentRetrieveParams,
+  type LightningPaymentSendParams,
+} from './lightning-payments';
+export {
+  LightningStaticCharges,
+  type LightningStaticChargeCreateParams,
+  type LightningStaticChargeRetrieveParams,
+  type LightningStaticChargeUpdateParams,
+} from './lightning-static-charges';
+export { Oauth2, type Oauth2RetrieveUserDataParams, type Oauth2RetrieveWalletDataParams } from './oauth2';
+export {
+  Utils,
+  type UtilCheckIPSupportParams,
+  type UtilDecodeLightningChargeParams,
+  type UtilListProdIPsParams,
+} from './utils';
 export {
   Vouchers,
   type VoucherCreateParams,

@@ -7,10 +7,10 @@ const client = new ZbdPayments({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource gamertag', () => {
+describe('resource gamertags', () => {
   // skipped: tests are disabled for the time being
   test.skip('createCharge', async () => {
-    const responsePromise = client.gamertag.createCharge();
+    const responsePromise = client.gamertags.createCharge();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -24,7 +24,7 @@ describe('resource gamertag', () => {
   test.skip('createCharge: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.gamertag.createCharge(
+      client.gamertags.createCharge(
         {
           amount: 'string',
           callbackUrl: '‎',
@@ -41,7 +41,7 @@ describe('resource gamertag', () => {
 
   // skipped: tests are disabled for the time being
   test.skip('retrieveByGamertag', async () => {
-    const responsePromise = client.gamertag.retrieveByGamertag('gamertag');
+    const responsePromise = client.gamertags.retrieveByGamertag('gamertag');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -55,7 +55,7 @@ describe('resource gamertag', () => {
   test.skip('retrieveByGamertag: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.gamertag.retrieveByGamertag(
+      client.gamertags.retrieveByGamertag(
         'gamertag',
         { apikey: 'apikey' },
         { path: '/_stainless_unknown_path' },
@@ -65,7 +65,7 @@ describe('resource gamertag', () => {
 
   // skipped: tests are disabled for the time being
   test.skip('retrieveByZbdID', async () => {
-    const responsePromise = client.gamertag.retrieveByZbdID('id');
+    const responsePromise = client.gamertags.retrieveByZbdID('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -79,13 +79,13 @@ describe('resource gamertag', () => {
   test.skip('retrieveByZbdID: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.gamertag.retrieveByZbdID('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
+      client.gamertags.retrieveByZbdID('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
   test.skip('retrievePayment', async () => {
-    const responsePromise = client.gamertag.retrievePayment('id');
+    const responsePromise = client.gamertags.retrievePayment('id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -99,13 +99,13 @@ describe('resource gamertag', () => {
   test.skip('retrievePayment: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.gamertag.retrievePayment('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
+      client.gamertags.retrievePayment('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
   test.skip('sendPayment', async () => {
-    const responsePromise = client.gamertag.sendPayment();
+    const responsePromise = client.gamertags.sendPayment();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -119,7 +119,7 @@ describe('resource gamertag', () => {
   test.skip('sendPayment: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.gamertag.sendPayment(
+      client.gamertags.sendPayment(
         { amount: 'string', description: '‎', gamertag: 'string', apikey: 'apikey' },
         { path: '/_stainless_unknown_path' },
       ),

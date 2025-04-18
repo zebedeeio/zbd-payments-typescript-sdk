@@ -6,12 +6,12 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
-export class StaticCharges extends APIResource {
+export class LightningStaticCharges extends APIResource {
   /**
    * Start accepting payments on Lightning with Static QR codes.
    */
   create(
-    params: StaticChargeCreateParams | null | undefined = {},
+    params: LightningStaticChargeCreateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
@@ -30,7 +30,7 @@ export class StaticCharges extends APIResource {
    */
   retrieve(
     id: string,
-    params: StaticChargeRetrieveParams | null | undefined = {},
+    params: LightningStaticChargeRetrieveParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey } = params ?? {};
@@ -48,7 +48,7 @@ export class StaticCharges extends APIResource {
    */
   update(
     id: string,
-    params: StaticChargeUpdateParams | null | undefined = {},
+    params: LightningStaticChargeUpdateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
@@ -63,7 +63,7 @@ export class StaticCharges extends APIResource {
   }
 }
 
-export interface StaticChargeCreateParams {
+export interface LightningStaticChargeCreateParams {
   /**
    * Body param: Number of payments this Static Charge can accept
    */
@@ -111,14 +111,14 @@ export interface StaticChargeCreateParams {
   apikey?: string;
 }
 
-export interface StaticChargeRetrieveParams {
+export interface LightningStaticChargeRetrieveParams {
   /**
    * ZBD Project API Key
    */
   apikey?: string;
 }
 
-export interface StaticChargeUpdateParams {
+export interface LightningStaticChargeUpdateParams {
   /**
    * Body param: Number of payments this Static Charge can accept
    */
@@ -160,10 +160,10 @@ export interface StaticChargeUpdateParams {
   apikey?: string;
 }
 
-export declare namespace StaticCharges {
+export declare namespace LightningStaticCharges {
   export {
-    type StaticChargeCreateParams as StaticChargeCreateParams,
-    type StaticChargeRetrieveParams as StaticChargeRetrieveParams,
-    type StaticChargeUpdateParams as StaticChargeUpdateParams,
+    type LightningStaticChargeCreateParams as LightningStaticChargeCreateParams,
+    type LightningStaticChargeRetrieveParams as LightningStaticChargeRetrieveParams,
+    type LightningStaticChargeUpdateParams as LightningStaticChargeUpdateParams,
   };
 }

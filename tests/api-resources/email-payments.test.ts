@@ -9,8 +9,8 @@ const client = new ZbdPayments({
 
 describe('resource emailPayments', () => {
   // skipped: tests are disabled for the time being
-  test.skip('sendPayment', async () => {
-    const responsePromise = client.emailPayments.sendPayment();
+  test.skip('send', async () => {
+    const responsePromise = client.emailPayments.send();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,10 +21,10 @@ describe('resource emailPayments', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('sendPayment: request options and params are passed correctly', async () => {
+  test.skip('send: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.emailPayments.sendPayment(
+      client.emailPayments.send(
         { amount: 'string', comment: '‎', email: 'string', apikey: 'apikey' },
         { path: '/_stainless_unknown_path' },
       ),

@@ -9,10 +9,7 @@ export class EmailPayments extends APIResource {
   /**
    * Send instant Bitcoin payments to any email.
    */
-  sendPayment(
-    params: EmailPaymentSendPaymentParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
+  send(params: EmailPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
     return this._client.post('/v0/email/send-payment', {
       body,
@@ -25,7 +22,7 @@ export class EmailPayments extends APIResource {
   }
 }
 
-export interface EmailPaymentSendPaymentParams {
+export interface EmailPaymentSendParams {
   /**
    * Body param: The amount for the Payment -> in millisatoshis
    */
@@ -48,5 +45,5 @@ export interface EmailPaymentSendPaymentParams {
 }
 
 export declare namespace EmailPayments {
-  export { type EmailPaymentSendPaymentParams as EmailPaymentSendPaymentParams };
+  export { type EmailPaymentSendParams as EmailPaymentSendParams };
 }
