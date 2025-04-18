@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0 (2025-04-18)
+
+Full Changelog: [v1.3.0...v1.4.0](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.3.0...v1.4.0)
+
+### Features
+
+* **api:** update via SDK Studio ([26db782](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/26db7828fc4518a5e6da5b5e68c85fdfc2995fb0))
+
 ## 1.3.0 (2025-04-18)
 
 Full Changelog: [v1.2.0...v1.3.0](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.2.0...v1.3.0)
