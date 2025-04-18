@@ -27,7 +27,7 @@ describe('resource keysendPayments', () => {
       client.keysendPayments.send(
         {
           amount: 'string',
-          callbackUrl: '‎',
+          callbackUrl: 'string',
           metadata: true,
           pubkey: 'string',
           tlvRecords: ['string'],
