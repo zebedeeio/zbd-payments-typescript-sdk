@@ -25,7 +25,7 @@ describe('resource vouchers', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.vouchers.create(
-        { amount: 'string', description: 'string', apikey: 'apikey' },
+        { amount: 'string', description: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
@@ -44,14 +44,6 @@ describe('resource vouchers', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieve: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.vouchers.retrieve('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
-  });
-
-  // skipped: tests are disabled for the time being
   test.skip('redeem', async () => {
     const responsePromise = client.vouchers.redeem();
     const rawResponse = await responsePromise.asResponse();
@@ -67,7 +59,7 @@ describe('resource vouchers', () => {
   test.skip('redeem: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.vouchers.redeem({ code: 'string', apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
+      client.vouchers.redeem({ code: 'string' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
@@ -87,7 +79,7 @@ describe('resource vouchers', () => {
   test.skip('revoke: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.vouchers.revoke({ code: 'string', apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
+      client.vouchers.revoke({ code: 'string' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 });

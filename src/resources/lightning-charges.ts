@@ -11,81 +11,54 @@ export class LightningCharges extends APIResource {
    * Start receiving instant Bitcoin payments through the ZBD API.
    */
   create(
-    params: LightningChargeCreateParams | null | undefined = {},
+    body: LightningChargeCreateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { apikey, ...body } = params ?? {};
     return this._client.post('/v0/charges', {
       body,
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
   /**
    * Retrieve all data about a single Charge.
    */
-  retrieve(
-    id: string,
-    params: LightningChargeRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { apikey } = params ?? {};
+  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/charges/${id}`, {
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
 export interface LightningChargeCreateParams {
   /**
-   * Body param: The amount for the Charge -> in millisatoshis
+   * The amount for the Charge -> in millisatoshis
    */
   amount?: string;
 
   /**
-   * Body param: The endpoint ZBD will POST Charge updates to
+   * The endpoint ZBD will POST Charge updates to
    */
   callbackUrl?: string;
 
   /**
-   * Body param: Note or comment for this Charge (visible to payer)
+   * Note or comment for this Charge (visible to payer)
    */
   description?: string;
 
   /**
-   * Body param: Time until Charge expiration -> in seconds
+   * Time until Charge expiration -> in seconds
    */
   expiresIn?: number;
 
   /**
-   * Body param: Open metadata string property
+   * Open metadata string property
    */
   internalId?: string;
-
-  /**
-   * Header param: ZBD Project API Key
-   */
-  apikey?: string;
-}
-
-export interface LightningChargeRetrieveParams {
-  /**
-   * ZBD Project API Key
-   */
-  apikey?: string;
 }
 
 export declare namespace LightningCharges {
-  export {
-    type LightningChargeCreateParams as LightningChargeCreateParams,
-    type LightningChargeRetrieveParams as LightningChargeRetrieveParams,
-  };
+  export { type LightningChargeCreateParams as LightningChargeCreateParams };
 }

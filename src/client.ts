@@ -21,58 +21,31 @@ import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { EmailPaymentSendParams, EmailPayments } from './resources/email-payments';
-import {
-  GamertagCreateChargeParams,
-  GamertagRetrieveByGamertagParams,
-  GamertagRetrieveByZbdIDParams,
-  GamertagRetrievePaymentParams,
-  GamertagSendPaymentParams,
-  Gamertags,
-} from './resources/gamertags';
+import { GamertagCreateChargeParams, GamertagSendPaymentParams, Gamertags } from './resources/gamertags';
 import { InternalTransfer, InternalTransferInitiateParams } from './resources/internal-transfer';
 import { KeysendPaymentSendParams, KeysendPayments } from './resources/keysend-payments';
 import {
   LightningAddress,
   LightningAddressCreateChargeParams,
   LightningAddressSendPaymentParams,
-  LightningAddressValidateParams,
 } from './resources/lightning-address';
-import {
-  LightningChargeCreateParams,
-  LightningChargeRetrieveParams,
-  LightningCharges,
-} from './resources/lightning-charges';
-import {
-  LightningPaymentRetrieveParams,
-  LightningPaymentSendParams,
-  LightningPayments,
-} from './resources/lightning-payments';
+import { LightningChargeCreateParams, LightningCharges } from './resources/lightning-charges';
+import { LightningPaymentSendParams, LightningPayments } from './resources/lightning-payments';
 import {
   LightningStaticChargeCreateParams,
-  LightningStaticChargeRetrieveParams,
   LightningStaticChargeUpdateParams,
   LightningStaticCharges,
 } from './resources/lightning-static-charges';
 import { Oauth2, Oauth2RetrieveUserDataParams, Oauth2RetrieveWalletDataParams } from './resources/oauth2';
-import {
-  UtilCheckIPSupportParams,
-  UtilDecodeLightningChargeParams,
-  UtilListProdIPsParams,
-  Utils,
-} from './resources/utils';
+import { UtilDecodeLightningChargeParams, Utils } from './resources/utils';
 import {
   VoucherCreateParams,
   VoucherRedeemParams,
-  VoucherRetrieveParams,
   VoucherRevokeParams,
   Vouchers,
 } from './resources/vouchers';
-import { Wallet, WalletRetrieveBalanceParams } from './resources/wallet';
-import {
-  WithdrawalRequestCreateParams,
-  WithdrawalRequestRetrieveParams,
-  WithdrawalRequests,
-} from './resources/withdrawal-requests';
+import { Wallet } from './resources/wallet';
+import { WithdrawalRequestCreateParams, WithdrawalRequests } from './resources/withdrawal-requests';
 import { readEnv } from './internal/utils/env';
 import { formatRequestDetails, loggerFor } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
@@ -216,15 +189,15 @@ export class ZbdPayments {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    if (this.apikey && values.get('authorization')) {
+    if (this.apikey && values.get('apikey')) {
       return;
     }
-    if (nulls.has('authorization')) {
+    if (nulls.has('apikey')) {
       return;
     }
 
     throw new Error(
-      'Could not resolve authentication method. Expected the apikey to be set. Or for the "Authorization" headers to be explicitly omitted',
+      'Could not resolve authentication method. Expected the apikey to be set. Or for the "apikey" headers to be explicitly omitted',
     );
   }
 
@@ -232,7 +205,7 @@ export class ZbdPayments {
     if (this.apikey == null) {
       return undefined;
     }
-    return buildHeaders([{ Authorization: `Bearer ${this.apikey}` }]);
+    return buildHeaders([{ apikey: this.apikey }]);
   }
 
   /**
@@ -765,16 +738,12 @@ export declare namespace ZbdPayments {
   export {
     Gamertags as Gamertags,
     type GamertagCreateChargeParams as GamertagCreateChargeParams,
-    type GamertagRetrieveByGamertagParams as GamertagRetrieveByGamertagParams,
-    type GamertagRetrieveByZbdIDParams as GamertagRetrieveByZbdIDParams,
-    type GamertagRetrievePaymentParams as GamertagRetrievePaymentParams,
     type GamertagSendPaymentParams as GamertagSendPaymentParams,
   };
 
   export {
     LightningCharges as LightningCharges,
     type LightningChargeCreateParams as LightningChargeCreateParams,
-    type LightningChargeRetrieveParams as LightningChargeRetrieveParams,
   };
 
   export {
@@ -786,20 +755,17 @@ export declare namespace ZbdPayments {
     LightningAddress as LightningAddress,
     type LightningAddressCreateChargeParams as LightningAddressCreateChargeParams,
     type LightningAddressSendPaymentParams as LightningAddressSendPaymentParams,
-    type LightningAddressValidateParams as LightningAddressValidateParams,
   };
 
   export {
     LightningStaticCharges as LightningStaticCharges,
     type LightningStaticChargeCreateParams as LightningStaticChargeCreateParams,
-    type LightningStaticChargeRetrieveParams as LightningStaticChargeRetrieveParams,
     type LightningStaticChargeUpdateParams as LightningStaticChargeUpdateParams,
   };
 
   export {
     Vouchers as Vouchers,
     type VoucherCreateParams as VoucherCreateParams,
-    type VoucherRetrieveParams as VoucherRetrieveParams,
     type VoucherRedeemParams as VoucherRedeemParams,
     type VoucherRevokeParams as VoucherRevokeParams,
   };
@@ -807,23 +773,16 @@ export declare namespace ZbdPayments {
   export {
     WithdrawalRequests as WithdrawalRequests,
     type WithdrawalRequestCreateParams as WithdrawalRequestCreateParams,
-    type WithdrawalRequestRetrieveParams as WithdrawalRequestRetrieveParams,
   };
 
   export {
     LightningPayments as LightningPayments,
-    type LightningPaymentRetrieveParams as LightningPaymentRetrieveParams,
     type LightningPaymentSendParams as LightningPaymentSendParams,
   };
 
-  export { Wallet as Wallet, type WalletRetrieveBalanceParams as WalletRetrieveBalanceParams };
+  export { Wallet as Wallet };
 
-  export {
-    Utils as Utils,
-    type UtilCheckIPSupportParams as UtilCheckIPSupportParams,
-    type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams,
-    type UtilListProdIPsParams as UtilListProdIPsParams,
-  };
+  export { Utils as Utils, type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams };
 
   export {
     Oauth2 as Oauth2,

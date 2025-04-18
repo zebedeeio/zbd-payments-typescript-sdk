@@ -32,7 +32,6 @@ describe('resource keysendPayments', () => {
           pubkey: 'string',
           tlvRecords: ['string'],
           value: 'myTLVRecordValue',
-          apikey: 'apikey',
         },
         { path: '/_stainless_unknown_path' },
       ),

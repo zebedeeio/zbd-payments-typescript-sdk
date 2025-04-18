@@ -10,18 +10,10 @@ export class Utils extends APIResource {
   /**
    * Verify if a user is coming from a supported region.
    */
-  checkIPSupport(
-    ip: string,
-    params: UtilCheckIPSupportParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { apikey } = params ?? {};
+  checkIPSupport(ip: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/is-supported-region/${ip}`, {
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -29,34 +21,23 @@ export class Utils extends APIResource {
    * Understand the inner properties of a Charge QR code.
    */
   decodeLightningCharge(
-    params: UtilDecodeLightningChargeParams | null | undefined = {},
+    body: UtilDecodeLightningChargeParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { apikey, ...body } = params ?? {};
     return this._client.post('/v0/decode-invoice', {
       body,
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
   /**
    * Get the official IP addresses of ZBD servers.
    */
-  listProdIPs(
-    params: UtilListProdIPsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { apikey } = params ?? {};
+  listProdIPs(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/v0/prod-ips', {
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
@@ -71,36 +52,13 @@ export class Utils extends APIResource {
   }
 }
 
-export interface UtilCheckIPSupportParams {
-  /**
-   * ZBD Project API Key
-   */
-  apikey?: string;
-}
-
 export interface UtilDecodeLightningChargeParams {
   /**
-   * Body param: The Charge or Invoice QR code contents
+   * The Charge or Invoice QR code contents
    */
   invoice?: string;
-
-  /**
-   * Header param: ZBD Project API Key
-   */
-  apikey?: string;
-}
-
-export interface UtilListProdIPsParams {
-  /**
-   * ZBD Project API Key
-   */
-  apikey?: string;
 }
 
 export declare namespace Utils {
-  export {
-    type UtilCheckIPSupportParams as UtilCheckIPSupportParams,
-    type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams,
-    type UtilListProdIPsParams as UtilListProdIPsParams,
-  };
+  export { type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams };
 }

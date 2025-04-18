@@ -34,7 +34,6 @@ describe('resource lightningStaticCharges', () => {
           maxAmount: 'string',
           minAmount: 'string',
           successMessage: '‎',
-          apikey: 'apikey',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -51,18 +50,6 @@ describe('resource lightningStaticCharges', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('retrieve: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lightningStaticCharges.retrieve(
-        'id',
-        { apikey: 'apikey' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
@@ -91,7 +78,6 @@ describe('resource lightningStaticCharges', () => {
           maxAmount: '‎',
           minAmount: '‎',
           successMessage: '‎',
-          apikey: 'apikey',
         },
         { path: '/_stainless_unknown_path' },
       ),

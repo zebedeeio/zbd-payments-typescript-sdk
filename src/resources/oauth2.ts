@@ -33,15 +33,11 @@ export class Oauth2 extends APIResource {
     params: Oauth2RetrieveUserDataParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { apikey, usertoken } = params ?? {};
+    const { usertoken } = params ?? {};
     return this._client.get('/v1/oauth2/user', {
       ...options,
       headers: buildHeaders([
-        {
-          Accept: '*/*',
-          ...(apikey != null ? { apikey: apikey } : undefined),
-          ...(usertoken != null ? { usertoken: usertoken } : undefined),
-        },
+        { Accept: '*/*', ...(usertoken != null ? { usertoken: usertoken } : undefined) },
         options?.headers,
       ]),
     });
@@ -54,15 +50,11 @@ export class Oauth2 extends APIResource {
     params: Oauth2RetrieveWalletDataParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { apikey, usertoken } = params ?? {};
+    const { usertoken } = params ?? {};
     return this._client.get('/v1/oauth2/wallet', {
       ...options,
       headers: buildHeaders([
-        {
-          Accept: '*/*',
-          ...(apikey != null ? { apikey: apikey } : undefined),
-          ...(usertoken != null ? { usertoken: usertoken } : undefined),
-        },
+        { Accept: '*/*', ...(usertoken != null ? { usertoken: usertoken } : undefined) },
         options?.headers,
       ]),
     });
@@ -71,22 +63,12 @@ export class Oauth2 extends APIResource {
 
 export interface Oauth2RetrieveUserDataParams {
   /**
-   * ZBD Project API Key
-   */
-  apikey?: string;
-
-  /**
    * OAuth2 Access Token
    */
   usertoken?: string;
 }
 
 export interface Oauth2RetrieveWalletDataParams {
-  /**
-   * ZBD Project API Key
-   */
-  apikey?: string;
-
   /**
    * OAuth2 Access Token
    */
