@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'zbd-payments/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from '@zbd/payments-sdk/internal/utils/path';
 import { inspect } from 'node:util';
 
 describe('path template tag function', () => {

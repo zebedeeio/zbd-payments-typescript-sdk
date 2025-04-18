@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ZbdPayments from 'zbd-payments';
+import ZbdPayments from '@zbd/payments-sdk';
 
 const client = new ZbdPayments({
   apiKey: 'My API Key',

@@ -55,12 +55,12 @@ $ cd zbd-payments
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link zbd-payments
+$ yarn link @zbd/payments-sdk
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global zbd-payments
+$ pnpm link -—global @zbd/payments-sdk
 ```
 
 ## Running tests
