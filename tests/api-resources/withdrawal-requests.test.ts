@@ -25,7 +25,13 @@ describe('resource withdrawalRequests', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.withdrawalRequests.create(
-        { amount: 'string', callbackUrl: '‎', description: '‎', expiresIn: 123, internalId: '‎' },
+        {
+          amount: 'string',
+          callbackUrl: 'string',
+          description: 'string',
+          expiresIn: 0,
+          internalId: 'string',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
