@@ -21,14 +21,6 @@ describe('resource lightningPayments', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieve: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lightningPayments.retrieve('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
-  });
-
-  // skipped: tests are disabled for the time being
   test.skip('send', async () => {
     const responsePromise = client.lightningPayments.send();
     const rawResponse = await responsePromise.asResponse();
@@ -45,14 +37,7 @@ describe('resource lightningPayments', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.lightningPayments.send(
-        {
-          amount: '‎',
-          callbackUrl: '‎',
-          description: '‎',
-          internalId: '‎',
-          invoice: 'string',
-          apikey: 'apikey',
-        },
+        { amount: '‎', callbackUrl: '‎', description: '‎', internalId: '‎', invoice: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);

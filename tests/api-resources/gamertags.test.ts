@@ -32,7 +32,6 @@ describe('resource gamertags', () => {
           expiresIn: 0,
           gamertag: 'string',
           internalId: '‎',
-          apikey: 'apikey',
         },
         { path: '/_stainless_unknown_path' },
       ),
@@ -52,18 +51,6 @@ describe('resource gamertags', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveByGamertag: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.gamertags.retrieveByGamertag(
-        'gamertag',
-        { apikey: 'apikey' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
-  });
-
-  // skipped: tests are disabled for the time being
   test.skip('retrieveByZbdID', async () => {
     const responsePromise = client.gamertags.retrieveByZbdID('id');
     const rawResponse = await responsePromise.asResponse();
@@ -76,14 +63,6 @@ describe('resource gamertags', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveByZbdID: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.gamertags.retrieveByZbdID('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
-  });
-
-  // skipped: tests are disabled for the time being
   test.skip('retrievePayment', async () => {
     const responsePromise = client.gamertags.retrievePayment('id');
     const rawResponse = await responsePromise.asResponse();
@@ -93,14 +72,6 @@ describe('resource gamertags', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('retrievePayment: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.gamertags.retrievePayment('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being
@@ -120,7 +91,7 @@ describe('resource gamertags', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.gamertags.sendPayment(
-        { amount: 'string', description: '‎', gamertag: 'string', apikey: 'apikey' },
+        { amount: 'string', description: '‎', gamertag: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);

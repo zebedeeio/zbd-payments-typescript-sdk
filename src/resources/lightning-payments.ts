@@ -10,83 +10,53 @@ export class LightningPayments extends APIResource {
   /**
    * Retrieve all data about a single Payment.
    */
-  retrieve(
-    id: string,
-    params: LightningPaymentRetrieveParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { apikey } = params ?? {};
+  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/payments/${id}`, {
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 
   /**
    * Start sending instant Bitcoin payments through the ZBD API.
    */
-  send(
-    params: LightningPaymentSendParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { apikey, ...body } = params ?? {};
+  send(body: LightningPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/v0/payments', {
       body,
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
-export interface LightningPaymentRetrieveParams {
-  /**
-   * ZBD Project API Key
-   */
-  apikey?: string;
-}
-
 export interface LightningPaymentSendParams {
   /**
-   * Body param: Amount to be paid to this Charge/Invoice -> in millisatoshis _(only
-   * valid if Amountless Invoice)_
+   * Amount to be paid to this Charge/Invoice -> in millisatoshis _(only valid if
+   * Amountless Invoice)_
    */
   amount?: string;
 
   /**
-   * Body param: The endpoint ZBD will POST Payment updates to
+   * The endpoint ZBD will POST Payment updates to
    */
   callbackUrl?: string;
 
   /**
-   * Body param: Note or comment for this Payment
+   * Note or comment for this Payment
    */
   description?: string;
 
   /**
-   * Body param: Open metadata string property
+   * Open metadata string property
    */
   internalId?: string;
 
   /**
-   * Body param: Lightning Network Payment Request / Charge
+   * Lightning Network Payment Request / Charge
    */
   invoice?: string;
-
-  /**
-   * Header param: ZBD Project API Key
-   */
-  apikey?: string;
 }
 
 export declare namespace LightningPayments {
-  export {
-    type LightningPaymentRetrieveParams as LightningPaymentRetrieveParams,
-    type LightningPaymentSendParams as LightningPaymentSendParams,
-  };
+  export { type LightningPaymentSendParams as LightningPaymentSendParams };
 }

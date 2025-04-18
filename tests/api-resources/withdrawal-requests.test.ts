@@ -25,14 +25,7 @@ describe('resource withdrawalRequests', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.withdrawalRequests.create(
-        {
-          amount: 'string',
-          callbackUrl: '‎',
-          description: '‎',
-          expiresIn: 123,
-          internalId: '‎',
-          apikey: 'apikey',
-        },
+        { amount: 'string', callbackUrl: '‎', description: '‎', expiresIn: 123, internalId: '‎' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
@@ -48,13 +41,5 @@ describe('resource withdrawalRequests', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('retrieve: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.withdrawalRequests.retrieve('id', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 });

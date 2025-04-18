@@ -10,36 +10,27 @@ export class InternalTransfer extends APIResource {
    * Performs a transfer of funds between two Projects.
    */
   initiate(
-    params: InternalTransferInitiateParams | null | undefined = {},
+    body: InternalTransferInitiateParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
-    const { apikey, ...body } = params ?? {};
     return this._client.post('/v0/internal-transfer', {
       body,
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
 export interface InternalTransferInitiateParams {
   /**
-   * Body param: The amount to be transferred -> in millisatoshis
+   * The amount to be transferred -> in millisatoshis
    */
   amount?: string;
 
   /**
-   * Body param: The Wallet ID of the recipient Project
+   * The Wallet ID of the recipient Project
    */
   receiverWalletId?: string;
-
-  /**
-   * Header param: ZBD Project API Key
-   */
-  apikey?: string;
 }
 
 export declare namespace InternalTransfer {

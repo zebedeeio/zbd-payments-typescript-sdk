@@ -9,28 +9,10 @@ export class Wallet extends APIResource {
   /**
    * Retrieve all data about a ZBD Project's Wallet.
    */
-  retrieveBalance(
-    params: WalletRetrieveBalanceParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<void> {
-    const { apikey } = params ?? {};
+  retrieveBalance(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/v0/wallet', {
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
-}
-
-export interface WalletRetrieveBalanceParams {
-  /**
-   * ZBD Project API Key
-   */
-  apikey?: string;
-}
-
-export declare namespace Wallet {
-  export { type WalletRetrieveBalanceParams as WalletRetrieveBalanceParams };
 }
