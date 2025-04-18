@@ -20,34 +20,46 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
-import { ChargeCreateParams, ChargeRetrieveParams, Charges } from './resources/charges';
-import { DecodeInvoice, DecodeInvoiceDecodeParams } from './resources/decode-invoice';
-import { EmailPaymentSendPaymentParams, EmailPayments } from './resources/email-payments';
+import { EmailPaymentSendParams, EmailPayments } from './resources/email-payments';
 import {
-  Gamertag,
   GamertagCreateChargeParams,
   GamertagRetrieveByGamertagParams,
   GamertagRetrieveByZbdIDParams,
   GamertagRetrievePaymentParams,
   GamertagSendPaymentParams,
-} from './resources/gamertag';
+  Gamertags,
+} from './resources/gamertags';
 import { InternalTransfer, InternalTransferInitiateParams } from './resources/internal-transfer';
 import { KeysendPaymentSendParams, KeysendPayments } from './resources/keysend-payments';
 import {
-  LnAddress,
-  LnAddressCreateChargeParams,
-  LnAddressSendPaymentParams,
-  LnAddressValidateParams,
-} from './resources/ln-address';
-import { Oauth2, Oauth2RetrieveUserDataParams, Oauth2RetrieveWalletDataParams } from './resources/oauth2';
-import { PaymentRetrieveParams, PaymentSendParams, Payments } from './resources/payments';
+  LightningAddress,
+  LightningAddressCreateChargeParams,
+  LightningAddressSendPaymentParams,
+  LightningAddressValidateParams,
+} from './resources/lightning-address';
 import {
-  StaticChargeCreateParams,
-  StaticChargeRetrieveParams,
-  StaticChargeUpdateParams,
-  StaticCharges,
-} from './resources/static-charges';
-import { UtilCheckIPSupportParams, UtilListProdIPsParams, Utils } from './resources/utils';
+  LightningChargeCreateParams,
+  LightningChargeRetrieveParams,
+  LightningCharges,
+} from './resources/lightning-charges';
+import {
+  LightningPaymentRetrieveParams,
+  LightningPaymentSendParams,
+  LightningPayments,
+} from './resources/lightning-payments';
+import {
+  LightningStaticChargeCreateParams,
+  LightningStaticChargeRetrieveParams,
+  LightningStaticChargeUpdateParams,
+  LightningStaticCharges,
+} from './resources/lightning-static-charges';
+import { Oauth2, Oauth2RetrieveUserDataParams, Oauth2RetrieveWalletDataParams } from './resources/oauth2';
+import {
+  UtilCheckIPSupportParams,
+  UtilDecodeLightningChargeParams,
+  UtilListProdIPsParams,
+  Utils,
+} from './resources/utils';
 import {
   VoucherCreateParams,
   VoucherRedeemParams,
@@ -720,30 +732,28 @@ export class ZbdPayments {
 
   static toFile = Uploads.toFile;
 
-  gamertag: API.Gamertag = new API.Gamertag(this);
-  charges: API.Charges = new API.Charges(this);
+  gamertags: API.Gamertags = new API.Gamertags(this);
+  lightningCharges: API.LightningCharges = new API.LightningCharges(this);
   internalTransfer: API.InternalTransfer = new API.InternalTransfer(this);
-  lnAddress: API.LnAddress = new API.LnAddress(this);
-  staticCharges: API.StaticCharges = new API.StaticCharges(this);
+  lightningAddress: API.LightningAddress = new API.LightningAddress(this);
+  lightningStaticCharges: API.LightningStaticCharges = new API.LightningStaticCharges(this);
   vouchers: API.Vouchers = new API.Vouchers(this);
   withdrawalRequests: API.WithdrawalRequests = new API.WithdrawalRequests(this);
-  decodeInvoice: API.DecodeInvoice = new API.DecodeInvoice(this);
-  payments: API.Payments = new API.Payments(this);
+  lightningPayments: API.LightningPayments = new API.LightningPayments(this);
   wallet: API.Wallet = new API.Wallet(this);
   utils: API.Utils = new API.Utils(this);
   oauth2: API.Oauth2 = new API.Oauth2(this);
   keysendPayments: API.KeysendPayments = new API.KeysendPayments(this);
   emailPayments: API.EmailPayments = new API.EmailPayments(this);
 }
-ZbdPayments.Gamertag = Gamertag;
-ZbdPayments.Charges = Charges;
+ZbdPayments.Gamertags = Gamertags;
+ZbdPayments.LightningCharges = LightningCharges;
 ZbdPayments.InternalTransfer = InternalTransfer;
-ZbdPayments.LnAddress = LnAddress;
-ZbdPayments.StaticCharges = StaticCharges;
+ZbdPayments.LightningAddress = LightningAddress;
+ZbdPayments.LightningStaticCharges = LightningStaticCharges;
 ZbdPayments.Vouchers = Vouchers;
 ZbdPayments.WithdrawalRequests = WithdrawalRequests;
-ZbdPayments.DecodeInvoice = DecodeInvoice;
-ZbdPayments.Payments = Payments;
+ZbdPayments.LightningPayments = LightningPayments;
 ZbdPayments.Wallet = Wallet;
 ZbdPayments.Utils = Utils;
 ZbdPayments.Oauth2 = Oauth2;
@@ -753,7 +763,7 @@ export declare namespace ZbdPayments {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
-    Gamertag as Gamertag,
+    Gamertags as Gamertags,
     type GamertagCreateChargeParams as GamertagCreateChargeParams,
     type GamertagRetrieveByGamertagParams as GamertagRetrieveByGamertagParams,
     type GamertagRetrieveByZbdIDParams as GamertagRetrieveByZbdIDParams,
@@ -762,9 +772,9 @@ export declare namespace ZbdPayments {
   };
 
   export {
-    Charges as Charges,
-    type ChargeCreateParams as ChargeCreateParams,
-    type ChargeRetrieveParams as ChargeRetrieveParams,
+    LightningCharges as LightningCharges,
+    type LightningChargeCreateParams as LightningChargeCreateParams,
+    type LightningChargeRetrieveParams as LightningChargeRetrieveParams,
   };
 
   export {
@@ -773,17 +783,17 @@ export declare namespace ZbdPayments {
   };
 
   export {
-    LnAddress as LnAddress,
-    type LnAddressCreateChargeParams as LnAddressCreateChargeParams,
-    type LnAddressSendPaymentParams as LnAddressSendPaymentParams,
-    type LnAddressValidateParams as LnAddressValidateParams,
+    LightningAddress as LightningAddress,
+    type LightningAddressCreateChargeParams as LightningAddressCreateChargeParams,
+    type LightningAddressSendPaymentParams as LightningAddressSendPaymentParams,
+    type LightningAddressValidateParams as LightningAddressValidateParams,
   };
 
   export {
-    StaticCharges as StaticCharges,
-    type StaticChargeCreateParams as StaticChargeCreateParams,
-    type StaticChargeRetrieveParams as StaticChargeRetrieveParams,
-    type StaticChargeUpdateParams as StaticChargeUpdateParams,
+    LightningStaticCharges as LightningStaticCharges,
+    type LightningStaticChargeCreateParams as LightningStaticChargeCreateParams,
+    type LightningStaticChargeRetrieveParams as LightningStaticChargeRetrieveParams,
+    type LightningStaticChargeUpdateParams as LightningStaticChargeUpdateParams,
   };
 
   export {
@@ -800,12 +810,10 @@ export declare namespace ZbdPayments {
     type WithdrawalRequestRetrieveParams as WithdrawalRequestRetrieveParams,
   };
 
-  export { DecodeInvoice as DecodeInvoice, type DecodeInvoiceDecodeParams as DecodeInvoiceDecodeParams };
-
   export {
-    Payments as Payments,
-    type PaymentRetrieveParams as PaymentRetrieveParams,
-    type PaymentSendParams as PaymentSendParams,
+    LightningPayments as LightningPayments,
+    type LightningPaymentRetrieveParams as LightningPaymentRetrieveParams,
+    type LightningPaymentSendParams as LightningPaymentSendParams,
   };
 
   export { Wallet as Wallet, type WalletRetrieveBalanceParams as WalletRetrieveBalanceParams };
@@ -813,6 +821,7 @@ export declare namespace ZbdPayments {
   export {
     Utils as Utils,
     type UtilCheckIPSupportParams as UtilCheckIPSupportParams,
+    type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams,
     type UtilListProdIPsParams as UtilListProdIPsParams,
   };
 
@@ -824,8 +833,5 @@ export declare namespace ZbdPayments {
 
   export { KeysendPayments as KeysendPayments, type KeysendPaymentSendParams as KeysendPaymentSendParams };
 
-  export {
-    EmailPayments as EmailPayments,
-    type EmailPaymentSendPaymentParams as EmailPaymentSendPaymentParams,
-  };
+  export { EmailPayments as EmailPayments, type EmailPaymentSendParams as EmailPaymentSendParams };
 }

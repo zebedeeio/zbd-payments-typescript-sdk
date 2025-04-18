@@ -26,6 +26,24 @@ export class Utils extends APIResource {
   }
 
   /**
+   * Understand the inner properties of a Charge QR code.
+   */
+  decodeLightningCharge(
+    params: UtilDecodeLightningChargeParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { apikey, ...body } = params ?? {};
+    return this._client.post('/v0/decode-invoice', {
+      body,
+      ...options,
+      headers: buildHeaders([
+        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
+        options?.headers,
+      ]),
+    });
+  }
+
+  /**
    * Get the official IP addresses of ZBD servers.
    */
   listProdIPs(
@@ -45,7 +63,7 @@ export class Utils extends APIResource {
   /**
    * Get the latest price for Bitcoin in US Dollars.
    */
-  retrieveBtcusd(options?: RequestOptions): APIPromise<void> {
+  retrieveBtcUsd(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/v0/btcusd', {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -60,6 +78,18 @@ export interface UtilCheckIPSupportParams {
   apikey?: string;
 }
 
+export interface UtilDecodeLightningChargeParams {
+  /**
+   * Body param: The Charge or Invoice QR code contents
+   */
+  invoice?: string;
+
+  /**
+   * Header param: ZBD Project API Key
+   */
+  apikey?: string;
+}
+
 export interface UtilListProdIPsParams {
   /**
    * ZBD Project API Key
@@ -70,6 +100,7 @@ export interface UtilListProdIPsParams {
 export declare namespace Utils {
   export {
     type UtilCheckIPSupportParams as UtilCheckIPSupportParams,
+    type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams,
     type UtilListProdIPsParams as UtilListProdIPsParams,
   };
 }

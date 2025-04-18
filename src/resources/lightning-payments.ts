@@ -6,13 +6,13 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
-export class Payments extends APIResource {
+export class LightningPayments extends APIResource {
   /**
    * Retrieve all data about a single Payment.
    */
   retrieve(
     id: string,
-    params: PaymentRetrieveParams | null | undefined = {},
+    params: LightningPaymentRetrieveParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey } = params ?? {};
@@ -28,7 +28,10 @@ export class Payments extends APIResource {
   /**
    * Start sending instant Bitcoin payments through the ZBD API.
    */
-  send(params: PaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  send(
+    params: LightningPaymentSendParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
     return this._client.post('/v0/payments', {
       body,
@@ -41,14 +44,14 @@ export class Payments extends APIResource {
   }
 }
 
-export interface PaymentRetrieveParams {
+export interface LightningPaymentRetrieveParams {
   /**
    * ZBD Project API Key
    */
   apikey?: string;
 }
 
-export interface PaymentSendParams {
+export interface LightningPaymentSendParams {
   /**
    * Body param: Amount to be paid to this Charge/Invoice -> in millisatoshis _(only
    * valid if Amountless Invoice)_
@@ -81,6 +84,9 @@ export interface PaymentSendParams {
   apikey?: string;
 }
 
-export declare namespace Payments {
-  export { type PaymentRetrieveParams as PaymentRetrieveParams, type PaymentSendParams as PaymentSendParams };
+export declare namespace LightningPayments {
+  export {
+    type LightningPaymentRetrieveParams as LightningPaymentRetrieveParams,
+    type LightningPaymentSendParams as LightningPaymentSendParams,
+  };
 }

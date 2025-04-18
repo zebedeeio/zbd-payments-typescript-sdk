@@ -6,7 +6,7 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
-export class Gamertag extends APIResource {
+export class Gamertags extends APIResource {
   /**
    * Generate a payment request for a ZBD User.
    */
@@ -178,7 +178,7 @@ export interface GamertagSendPaymentParams {
   apikey?: string;
 }
 
-export declare namespace Gamertag {
+export declare namespace Gamertags {
   export {
     type GamertagCreateChargeParams as GamertagCreateChargeParams,
     type GamertagRetrieveByGamertagParams as GamertagRetrieveByGamertagParams,

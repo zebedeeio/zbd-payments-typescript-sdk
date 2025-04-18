@@ -29,6 +29,29 @@ describe('resource utils', () => {
   });
 
   // skipped: tests are disabled for the time being
+  test.skip('decodeLightningCharge', async () => {
+    const responsePromise = client.utils.decodeLightningCharge();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('decodeLightningCharge: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.utils.decodeLightningCharge(
+        { invoice: 'string', apikey: 'apikey' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(ZbdPayments.NotFoundError);
+  });
+
+  // skipped: tests are disabled for the time being
   test.skip('listProdIPs', async () => {
     const responsePromise = client.utils.listProdIPs();
     const rawResponse = await responsePromise.asResponse();
@@ -49,8 +72,8 @@ describe('resource utils', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveBtcusd', async () => {
-    const responsePromise = client.utils.retrieveBtcusd();
+  test.skip('retrieveBtcUsd', async () => {
+    const responsePromise = client.utils.retrieveBtcUsd();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

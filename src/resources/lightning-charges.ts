@@ -6,11 +6,14 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
-export class Charges extends APIResource {
+export class LightningCharges extends APIResource {
   /**
    * Start receiving instant Bitcoin payments through the ZBD API.
    */
-  create(params: ChargeCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  create(
+    params: LightningChargeCreateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
     return this._client.post('/v0/charges', {
       body,
@@ -27,7 +30,7 @@ export class Charges extends APIResource {
    */
   retrieve(
     id: string,
-    params: ChargeRetrieveParams | null | undefined = {},
+    params: LightningChargeRetrieveParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey } = params ?? {};
@@ -41,7 +44,7 @@ export class Charges extends APIResource {
   }
 }
 
-export interface ChargeCreateParams {
+export interface LightningChargeCreateParams {
   /**
    * Body param: The amount for the Charge -> in millisatoshis
    */
@@ -73,13 +76,16 @@ export interface ChargeCreateParams {
   apikey?: string;
 }
 
-export interface ChargeRetrieveParams {
+export interface LightningChargeRetrieveParams {
   /**
    * ZBD Project API Key
    */
   apikey?: string;
 }
 
-export declare namespace Charges {
-  export { type ChargeCreateParams as ChargeCreateParams, type ChargeRetrieveParams as ChargeRetrieveParams };
+export declare namespace LightningCharges {
+  export {
+    type LightningChargeCreateParams as LightningChargeCreateParams,
+    type LightningChargeRetrieveParams as LightningChargeRetrieveParams,
+  };
 }

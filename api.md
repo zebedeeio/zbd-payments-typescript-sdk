@@ -1,19 +1,19 @@
-# Gamertag
+# Gamertags
 
 Methods:
 
-- <code title="post /v0/gamertag/charges">client.gamertag.<a href="./src/resources/gamertag.ts">createCharge</a>({ ...params }) -> void</code>
-- <code title="get /v0/user-id/gamertag/{gamertag}">client.gamertag.<a href="./src/resources/gamertag.ts">retrieveByGamertag</a>(gamertag, { ...params }) -> void</code>
-- <code title="get /v0/gamertag/user-id/{id}">client.gamertag.<a href="./src/resources/gamertag.ts">retrieveByZbdID</a>(id, { ...params }) -> void</code>
-- <code title="get /v0/gamertag/transaction/{id}">client.gamertag.<a href="./src/resources/gamertag.ts">retrievePayment</a>(id, { ...params }) -> void</code>
-- <code title="post /v0/gamertag/send-payment">client.gamertag.<a href="./src/resources/gamertag.ts">sendPayment</a>({ ...params }) -> void</code>
+- <code title="post /v0/gamertag/charges">client.gamertags.<a href="./src/resources/gamertags.ts">createCharge</a>({ ...params }) -> void</code>
+- <code title="get /v0/user-id/gamertag/{gamertag}">client.gamertags.<a href="./src/resources/gamertags.ts">retrieveByGamertag</a>(gamertag, { ...params }) -> void</code>
+- <code title="get /v0/gamertag/user-id/{id}">client.gamertags.<a href="./src/resources/gamertags.ts">retrieveByZbdID</a>(id, { ...params }) -> void</code>
+- <code title="get /v0/gamertag/transaction/{id}">client.gamertags.<a href="./src/resources/gamertags.ts">retrievePayment</a>(id, { ...params }) -> void</code>
+- <code title="post /v0/gamertag/send-payment">client.gamertags.<a href="./src/resources/gamertags.ts">sendPayment</a>({ ...params }) -> void</code>
 
-# Charges
+# LightningCharges
 
 Methods:
 
-- <code title="post /v0/charges">client.charges.<a href="./src/resources/charges.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /v0/charges/{id}">client.charges.<a href="./src/resources/charges.ts">retrieve</a>(id, { ...params }) -> void</code>
+- <code title="post /v0/charges">client.lightningCharges.<a href="./src/resources/lightning-charges.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /v0/charges/{id}">client.lightningCharges.<a href="./src/resources/lightning-charges.ts">retrieve</a>(id, { ...params }) -> void</code>
 
 # InternalTransfer
 
@@ -21,21 +21,21 @@ Methods:
 
 - <code title="post /v0/internal-transfer">client.internalTransfer.<a href="./src/resources/internal-transfer.ts">initiate</a>({ ...params }) -> void</code>
 
-# LnAddress
+# LightningAddress
 
 Methods:
 
-- <code title="post /v0/ln-address/fetch-charge">client.lnAddress.<a href="./src/resources/ln-address.ts">createCharge</a>({ ...params }) -> void</code>
-- <code title="post /v0/ln-address/send-payment">client.lnAddress.<a href="./src/resources/ln-address.ts">sendPayment</a>({ ...params }) -> void</code>
-- <code title="get /v0/ln-address/validate/{address}">client.lnAddress.<a href="./src/resources/ln-address.ts">validate</a>(address, { ...params }) -> void</code>
+- <code title="post /v0/ln-address/fetch-charge">client.lightningAddress.<a href="./src/resources/lightning-address.ts">createCharge</a>({ ...params }) -> void</code>
+- <code title="post /v0/ln-address/send-payment">client.lightningAddress.<a href="./src/resources/lightning-address.ts">sendPayment</a>({ ...params }) -> void</code>
+- <code title="get /v0/ln-address/validate/{address}">client.lightningAddress.<a href="./src/resources/lightning-address.ts">validate</a>(address, { ...params }) -> void</code>
 
-# StaticCharges
+# LightningStaticCharges
 
 Methods:
 
-- <code title="post /v0/static-charges">client.staticCharges.<a href="./src/resources/static-charges.ts">create</a>({ ...params }) -> void</code>
-- <code title="get /v0/static-charges/{id}">client.staticCharges.<a href="./src/resources/static-charges.ts">retrieve</a>(id, { ...params }) -> void</code>
-- <code title="patch /v0/static-charges/{id}">client.staticCharges.<a href="./src/resources/static-charges.ts">update</a>(id, { ...params }) -> void</code>
+- <code title="post /v0/static-charges">client.lightningStaticCharges.<a href="./src/resources/lightning-static-charges.ts">create</a>({ ...params }) -> void</code>
+- <code title="get /v0/static-charges/{id}">client.lightningStaticCharges.<a href="./src/resources/lightning-static-charges.ts">retrieve</a>(id, { ...params }) -> void</code>
+- <code title="patch /v0/static-charges/{id}">client.lightningStaticCharges.<a href="./src/resources/lightning-static-charges.ts">update</a>(id, { ...params }) -> void</code>
 
 # Vouchers
 
@@ -53,18 +53,12 @@ Methods:
 - <code title="post /v0/withdrawal-requests">client.withdrawalRequests.<a href="./src/resources/withdrawal-requests.ts">create</a>({ ...params }) -> void</code>
 - <code title="get /v0/withdrawal-requests/{id}">client.withdrawalRequests.<a href="./src/resources/withdrawal-requests.ts">retrieve</a>(id, { ...params }) -> void</code>
 
-# DecodeInvoice
+# LightningPayments
 
 Methods:
 
-- <code title="post /v0/decode-invoice">client.decodeInvoice.<a href="./src/resources/decode-invoice.ts">decode</a>({ ...params }) -> void</code>
-
-# Payments
-
-Methods:
-
-- <code title="get /v0/payments/{id}">client.payments.<a href="./src/resources/payments.ts">retrieve</a>(id, { ...params }) -> void</code>
-- <code title="post /v0/payments">client.payments.<a href="./src/resources/payments.ts">send</a>({ ...params }) -> void</code>
+- <code title="get /v0/payments/{id}">client.lightningPayments.<a href="./src/resources/lightning-payments.ts">retrieve</a>(id, { ...params }) -> void</code>
+- <code title="post /v0/payments">client.lightningPayments.<a href="./src/resources/lightning-payments.ts">send</a>({ ...params }) -> void</code>
 
 # Wallet
 
@@ -77,8 +71,9 @@ Methods:
 Methods:
 
 - <code title="get /v0/is-supported-region/{ip}">client.utils.<a href="./src/resources/utils.ts">checkIPSupport</a>(ip, { ...params }) -> void</code>
+- <code title="post /v0/decode-invoice">client.utils.<a href="./src/resources/utils.ts">decodeLightningCharge</a>({ ...params }) -> void</code>
 - <code title="get /v0/prod-ips">client.utils.<a href="./src/resources/utils.ts">listProdIPs</a>({ ...params }) -> void</code>
-- <code title="get /v0/btcusd">client.utils.<a href="./src/resources/utils.ts">retrieveBtcusd</a>() -> void</code>
+- <code title="get /v0/btcusd">client.utils.<a href="./src/resources/utils.ts">retrieveBtcUsd</a>() -> void</code>
 
 # Oauth2
 
@@ -99,4 +94,4 @@ Methods:
 
 Methods:
 
-- <code title="post /v0/email/send-payment">client.emailPayments.<a href="./src/resources/email-payments.ts">sendPayment</a>({ ...params }) -> void</code>
+- <code title="post /v0/email/send-payment">client.emailPayments.<a href="./src/resources/email-payments.ts">send</a>({ ...params }) -> void</code>
