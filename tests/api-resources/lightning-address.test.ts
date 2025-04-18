@@ -25,7 +25,7 @@ describe('resource lightningAddress', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.lightningAddress.createCharge(
-        { amount: 'string', description: '‎', lnaddress: 'string' },
+        { amount: 'string', description: 'string', lnaddress: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
@@ -48,7 +48,13 @@ describe('resource lightningAddress', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.lightningAddress.sendPayment(
-        { amount: 'string', callbackUrl: '‎', comment: '‎', internalId: '‎', lnAddress: 'string' },
+        {
+          amount: 'string',
+          callbackUrl: 'string',
+          comment: 'string',
+          internalId: 'string',
+          lnAddress: 'string',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);

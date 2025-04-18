@@ -37,7 +37,13 @@ describe('resource lightningPayments', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.lightningPayments.send(
-        { amount: '‎', callbackUrl: '‎', description: '‎', internalId: '‎', invoice: 'string' },
+        {
+          amount: 'string',
+          callbackUrl: 'string',
+          description: 'string',
+          internalId: 'string',
+          invoice: 'string',
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
