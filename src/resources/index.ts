@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Btcusd } from './btcusd';
 export { Charges, type ChargeCreateParams, type ChargeRetrieveParams } from './charges';
 export { DecodeInvoice, type DecodeInvoiceDecodeParams } from './decode-invoice';
 export { EmailPayments, type EmailPaymentSendPaymentParams } from './email-payments';

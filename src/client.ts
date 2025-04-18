@@ -20,7 +20,6 @@ import { APIPromise } from './core/api-promise';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
-import { Btcusd } from './resources/btcusd';
 import { ChargeCreateParams, ChargeRetrieveParams, Charges } from './resources/charges';
 import { DecodeInvoice, DecodeInvoiceDecodeParams } from './resources/decode-invoice';
 import { EmailPaymentSendPaymentParams, EmailPayments } from './resources/email-payments';
@@ -729,7 +728,6 @@ export class ZbdPayments {
   vouchers: API.Vouchers = new API.Vouchers(this);
   withdrawalRequests: API.WithdrawalRequests = new API.WithdrawalRequests(this);
   decodeInvoice: API.DecodeInvoice = new API.DecodeInvoice(this);
-  btcusd: API.Btcusd = new API.Btcusd(this);
   payments: API.Payments = new API.Payments(this);
   wallet: API.Wallet = new API.Wallet(this);
   utils: API.Utils = new API.Utils(this);
@@ -745,7 +743,6 @@ ZbdPayments.StaticCharges = StaticCharges;
 ZbdPayments.Vouchers = Vouchers;
 ZbdPayments.WithdrawalRequests = WithdrawalRequests;
 ZbdPayments.DecodeInvoice = DecodeInvoice;
-ZbdPayments.Btcusd = Btcusd;
 ZbdPayments.Payments = Payments;
 ZbdPayments.Wallet = Wallet;
 ZbdPayments.Utils = Utils;
@@ -804,8 +801,6 @@ export declare namespace ZbdPayments {
   };
 
   export { DecodeInvoice as DecodeInvoice, type DecodeInvoiceDecodeParams as DecodeInvoiceDecodeParams };
-
-  export { Btcusd as Btcusd };
 
   export {
     Payments as Payments,

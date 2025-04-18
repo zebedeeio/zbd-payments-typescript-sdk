@@ -59,12 +59,6 @@ Methods:
 
 - <code title="post /v0/decode-invoice">client.decodeInvoice.<a href="./src/resources/decode-invoice.ts">decode</a>({ ...params }) -> void</code>
 
-# Btcusd
-
-Methods:
-
-- <code title="get /v0/btcusd">client.btcusd.<a href="./src/resources/btcusd.ts">retrievePrice</a>() -> void</code>
-
 # Payments
 
 Methods:
@@ -84,6 +78,7 @@ Methods:
 
 - <code title="get /v0/is-supported-region/{ip}">client.utils.<a href="./src/resources/utils.ts">checkIPSupport</a>(ip, { ...params }) -> void</code>
 - <code title="get /v0/prod-ips">client.utils.<a href="./src/resources/utils.ts">listProdIPs</a>({ ...params }) -> void</code>
+- <code title="get /v0/btcusd">client.utils.<a href="./src/resources/utils.ts">retrieveBtcusd</a>() -> void</code>
 
 # Oauth2
 
