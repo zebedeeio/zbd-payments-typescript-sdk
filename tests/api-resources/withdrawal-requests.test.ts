@@ -29,7 +29,7 @@ describe('resource withdrawalRequests', () => {
           amount: 'string',
           callbackUrl: 'string',
           description: 'string',
-          expiresIn: 123,
+          expiresIn: 0,
           internalId: 'string',
         },
         { path: '/_stainless_unknown_path' },
