@@ -81,7 +81,7 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['ZBD_PAYMENTS_API_KEY'].
    */
-  apiKey?: string | null | undefined;
+  apikey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -154,7 +154,7 @@ export interface ClientOptions {
  * API Client for interfacing with the Zbd Payments API.
  */
 export class ZbdPayments {
-  apiKey: string | null;
+  apikey: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -171,7 +171,7 @@ export class ZbdPayments {
   /**
    * API Client for interfacing with the Zbd Payments API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['ZBD_PAYMENTS_API_KEY'] ?? null]
+   * @param {string | null | undefined} [opts.apikey=process.env['ZBD_PAYMENTS_API_KEY'] ?? null]
    * @param {string} [opts.baseURL=process.env['ZBD_PAYMENTS_BASE_URL'] ?? https://api.zebedee.io] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
@@ -182,11 +182,11 @@ export class ZbdPayments {
    */
   constructor({
     baseURL = readEnv('ZBD_PAYMENTS_BASE_URL'),
-    apiKey = readEnv('ZBD_PAYMENTS_API_KEY') ?? null,
+    apikey = readEnv('ZBD_PAYMENTS_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
-      apiKey,
+      apikey,
       ...opts,
       baseURL: baseURL || `https://api.zebedee.io`,
     };
@@ -208,7 +208,7 @@ export class ZbdPayments {
 
     this._options = options;
 
-    this.apiKey = apiKey;
+    this.apikey = apikey;
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -216,7 +216,7 @@ export class ZbdPayments {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    if (this.apiKey && values.get('authorization')) {
+    if (this.apikey && values.get('authorization')) {
       return;
     }
     if (nulls.has('authorization')) {
@@ -224,15 +224,15 @@ export class ZbdPayments {
     }
 
     throw new Error(
-      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
+      'Could not resolve authentication method. Expected the apikey to be set. Or for the "Authorization" headers to be explicitly omitted',
     );
   }
 
   protected authHeaders(opts: FinalRequestOptions): NullableHeaders | undefined {
-    if (this.apiKey == null) {
+    if (this.apikey == null) {
       return undefined;
     }
-    return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
+    return buildHeaders([{ Authorization: `Bearer ${this.apikey}` }]);
   }
 
   /**

@@ -23,7 +23,7 @@ describe('instantiate client', () => {
     const client = new ZbdPayments({
       baseURL: 'http://localhost:5000/',
       defaultHeaders: { 'X-My-Default-Header': '2' },
-      apiKey: 'My API Key',
+      apikey: 'My Apikey',
     });
 
     test('they are used in the request', () => {
@@ -87,14 +87,14 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new ZbdPayments({ logger: logger, logLevel: 'debug', apiKey: 'My API Key' });
+      const client = new ZbdPayments({ logger: logger, logLevel: 'debug', apikey: 'My Apikey' });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).toHaveBeenCalled();
     });
 
     test('default logLevel is warn', async () => {
-      const client = new ZbdPayments({ apiKey: 'My API Key' });
+      const client = new ZbdPayments({ apikey: 'My Apikey' });
       expect(client.logLevel).toBe('warn');
     });
 
@@ -107,7 +107,7 @@ describe('instantiate client', () => {
         error: jest.fn(),
       };
 
-      const client = new ZbdPayments({ logger: logger, logLevel: 'info', apiKey: 'My API Key' });
+      const client = new ZbdPayments({ logger: logger, logLevel: 'info', apikey: 'My Apikey' });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -123,7 +123,7 @@ describe('instantiate client', () => {
       };
 
       process.env['ZBD_PAYMENTS_LOG'] = 'debug';
-      const client = new ZbdPayments({ logger: logger, apiKey: 'My API Key' });
+      const client = new ZbdPayments({ logger: logger, apikey: 'My Apikey' });
       expect(client.logLevel).toBe('debug');
 
       await forceAPIResponseForClient(client);
@@ -140,7 +140,7 @@ describe('instantiate client', () => {
       };
 
       process.env['ZBD_PAYMENTS_LOG'] = 'not a log level';
-      const client = new ZbdPayments({ logger: logger, apiKey: 'My API Key' });
+      const client = new ZbdPayments({ logger: logger, apikey: 'My Apikey' });
       expect(client.logLevel).toBe('warn');
       expect(warnMock).toHaveBeenCalledWith(
         'process.env[\'ZBD_PAYMENTS_LOG\'] was set to "not a log level", expected one of ["off","error","warn","info","debug"]',
@@ -157,7 +157,7 @@ describe('instantiate client', () => {
       };
 
       process.env['ZBD_PAYMENTS_LOG'] = 'debug';
-      const client = new ZbdPayments({ logger: logger, logLevel: 'off', apiKey: 'My API Key' });
+      const client = new ZbdPayments({ logger: logger, logLevel: 'off', apikey: 'My Apikey' });
 
       await forceAPIResponseForClient(client);
       expect(debugMock).not.toHaveBeenCalled();
@@ -173,7 +173,7 @@ describe('instantiate client', () => {
       };
 
       process.env['ZBD_PAYMENTS_LOG'] = 'not a log level';
-      const client = new ZbdPayments({ logger: logger, logLevel: 'debug', apiKey: 'My API Key' });
+      const client = new ZbdPayments({ logger: logger, logLevel: 'debug', apikey: 'My Apikey' });
       expect(client.logLevel).toBe('debug');
       expect(warnMock).not.toHaveBeenCalled();
     });
@@ -184,7 +184,7 @@ describe('instantiate client', () => {
       const client = new ZbdPayments({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo' },
-        apiKey: 'My API Key',
+        apikey: 'My Apikey',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo');
     });
@@ -193,7 +193,7 @@ describe('instantiate client', () => {
       const client = new ZbdPayments({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { apiVersion: 'foo', hello: 'world' },
-        apiKey: 'My API Key',
+        apikey: 'My Apikey',
       });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/foo?apiVersion=foo&hello=world');
     });
@@ -202,7 +202,7 @@ describe('instantiate client', () => {
       const client = new ZbdPayments({
         baseURL: 'http://localhost:5000/',
         defaultQuery: { hello: 'world' },
-        apiKey: 'My API Key',
+        apikey: 'My Apikey',
       });
       expect(client.buildURL('/foo', { hello: undefined })).toEqual('http://localhost:5000/foo');
     });
@@ -211,7 +211,7 @@ describe('instantiate client', () => {
   test('custom fetch', async () => {
     const client = new ZbdPayments({
       baseURL: 'http://localhost:5000/',
-      apiKey: 'My API Key',
+      apikey: 'My Apikey',
       fetch: (url) => {
         return Promise.resolve(
           new Response(JSON.stringify({ url, custom: true }), {
@@ -229,7 +229,7 @@ describe('instantiate client', () => {
     // make sure the global fetch type is assignable to our Fetch type
     const client = new ZbdPayments({
       baseURL: 'http://localhost:5000/',
-      apiKey: 'My API Key',
+      apikey: 'My Apikey',
       fetch: defaultFetch,
     });
   });
@@ -237,7 +237,7 @@ describe('instantiate client', () => {
   test('custom signal', async () => {
     const client = new ZbdPayments({
       baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-      apiKey: 'My API Key',
+      apikey: 'My Apikey',
       fetch: (...args) => {
         return new Promise((resolve, reject) =>
           setTimeout(
@@ -269,7 +269,7 @@ describe('instantiate client', () => {
 
     const client = new ZbdPayments({
       baseURL: 'http://localhost:5000/',
-      apiKey: 'My API Key',
+      apikey: 'My Apikey',
       fetch: testFetch,
     });
 
@@ -279,12 +279,12 @@ describe('instantiate client', () => {
 
   describe('baseUrl', () => {
     test('trailing slash', () => {
-      const client = new ZbdPayments({ baseURL: 'http://localhost:5000/custom/path/', apiKey: 'My API Key' });
+      const client = new ZbdPayments({ baseURL: 'http://localhost:5000/custom/path/', apikey: 'My Apikey' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
     test('no trailing slash', () => {
-      const client = new ZbdPayments({ baseURL: 'http://localhost:5000/custom/path', apiKey: 'My API Key' });
+      const client = new ZbdPayments({ baseURL: 'http://localhost:5000/custom/path', apikey: 'My Apikey' });
       expect(client.buildURL('/foo', null)).toEqual('http://localhost:5000/custom/path/foo');
     });
 
@@ -293,55 +293,55 @@ describe('instantiate client', () => {
     });
 
     test('explicit option', () => {
-      const client = new ZbdPayments({ baseURL: 'https://example.com', apiKey: 'My API Key' });
+      const client = new ZbdPayments({ baseURL: 'https://example.com', apikey: 'My Apikey' });
       expect(client.baseURL).toEqual('https://example.com');
     });
 
     test('env variable', () => {
       process.env['ZBD_PAYMENTS_BASE_URL'] = 'https://example.com/from_env';
-      const client = new ZbdPayments({ apiKey: 'My API Key' });
+      const client = new ZbdPayments({ apikey: 'My Apikey' });
       expect(client.baseURL).toEqual('https://example.com/from_env');
     });
 
     test('empty env variable', () => {
       process.env['ZBD_PAYMENTS_BASE_URL'] = ''; // empty
-      const client = new ZbdPayments({ apiKey: 'My API Key' });
+      const client = new ZbdPayments({ apikey: 'My Apikey' });
       expect(client.baseURL).toEqual('https://api.zebedee.io');
     });
 
     test('blank env variable', () => {
       process.env['ZBD_PAYMENTS_BASE_URL'] = '  '; // blank
-      const client = new ZbdPayments({ apiKey: 'My API Key' });
+      const client = new ZbdPayments({ apikey: 'My Apikey' });
       expect(client.baseURL).toEqual('https://api.zebedee.io');
     });
   });
 
   test('maxRetries option is correctly set', () => {
-    const client = new ZbdPayments({ maxRetries: 4, apiKey: 'My API Key' });
+    const client = new ZbdPayments({ maxRetries: 4, apikey: 'My Apikey' });
     expect(client.maxRetries).toEqual(4);
 
     // default
-    const client2 = new ZbdPayments({ apiKey: 'My API Key' });
+    const client2 = new ZbdPayments({ apikey: 'My Apikey' });
     expect(client2.maxRetries).toEqual(2);
   });
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['ZBD_PAYMENTS_API_KEY'] = 'My API Key';
+    process.env['ZBD_PAYMENTS_API_KEY'] = 'My Apikey';
     const client = new ZbdPayments();
-    expect(client.apiKey).toBe('My API Key');
+    expect(client.apikey).toBe('My Apikey');
   });
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
-    process.env['ZBD_PAYMENTS_API_KEY'] = 'another My API Key';
-    const client = new ZbdPayments({ apiKey: 'My API Key' });
-    expect(client.apiKey).toBe('My API Key');
+    process.env['ZBD_PAYMENTS_API_KEY'] = 'another My Apikey';
+    const client = new ZbdPayments({ apikey: 'My Apikey' });
+    expect(client.apikey).toBe('My Apikey');
   });
 });
 
 describe('request building', () => {
-  const client = new ZbdPayments({ apiKey: 'My API Key' });
+  const client = new ZbdPayments({ apikey: 'My Apikey' });
 
   describe('custom headers', () => {
     test('handles undefined', () => {
@@ -360,7 +360,7 @@ describe('request building', () => {
 });
 
 describe('default encoder', () => {
-  const client = new ZbdPayments({ apiKey: 'My API Key' });
+  const client = new ZbdPayments({ apikey: 'My Apikey' });
 
   class Serializable {
     toJSON() {
@@ -445,7 +445,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ZbdPayments({ apiKey: 'My API Key', timeout: 10, fetch: testFetch });
+    const client = new ZbdPayments({ apikey: 'My Apikey', timeout: 10, fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -475,7 +475,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ZbdPayments({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new ZbdPayments({ apikey: 'My Apikey', fetch: testFetch, maxRetries: 4 });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
 
@@ -499,7 +499,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new ZbdPayments({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new ZbdPayments({ apikey: 'My Apikey', fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -529,7 +529,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
     const client = new ZbdPayments({
-      apiKey: 'My API Key',
+      apikey: 'My Apikey',
       fetch: testFetch,
       maxRetries: 4,
       defaultHeaders: { 'X-Stainless-Retry-Count': null },
@@ -561,7 +561,7 @@ describe('retries', () => {
       capturedRequest = init;
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
-    const client = new ZbdPayments({ apiKey: 'My API Key', fetch: testFetch, maxRetries: 4 });
+    const client = new ZbdPayments({ apikey: 'My Apikey', fetch: testFetch, maxRetries: 4 });
 
     expect(
       await client.request({
@@ -591,7 +591,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ZbdPayments({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new ZbdPayments({ apikey: 'My Apikey', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
@@ -621,7 +621,7 @@ describe('retries', () => {
       return new Response(JSON.stringify({ a: 1 }), { headers: { 'Content-Type': 'application/json' } });
     };
 
-    const client = new ZbdPayments({ apiKey: 'My API Key', fetch: testFetch });
+    const client = new ZbdPayments({ apikey: 'My Apikey', fetch: testFetch });
 
     expect(await client.request({ path: '/foo', method: 'get' })).toEqual({ a: 1 });
     expect(count).toEqual(2);
