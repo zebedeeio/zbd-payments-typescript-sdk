@@ -22,19 +22,18 @@ import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { Btcusd } from './resources/btcusd';
 import { ChargeCreateParams, ChargeRetrieveParams, Charges } from './resources/charges';
-import { CreateVoucher, CreateVoucherCreateParams } from './resources/create-voucher';
 import { DecodeInvoice, DecodeInvoiceDecodeParams } from './resources/decode-invoice';
-import { Email, EmailSendPaymentParams } from './resources/email';
+import { EmailPaymentSendPaymentParams, EmailPayments } from './resources/email-payments';
 import {
   Gamertag,
   GamertagCreateChargeParams,
+  GamertagRetrieveByGamertagParams,
   GamertagRetrieveByZbdIDParams,
   GamertagRetrievePaymentParams,
   GamertagSendPaymentParams,
 } from './resources/gamertag';
 import { InternalTransfer, InternalTransferInitiateParams } from './resources/internal-transfer';
-import { IsSupportedRegion, IsSupportedRegionCheckParams } from './resources/is-supported-region';
-import { KeysendPayment, KeysendPaymentSendParams } from './resources/keysend-payment';
+import { KeysendPaymentSendParams, KeysendPayments } from './resources/keysend-payments';
 import {
   LnAddress,
   LnAddressCreateChargeParams,
@@ -43,18 +42,21 @@ import {
 } from './resources/ln-address';
 import { Oauth2, Oauth2RetrieveUserDataParams, Oauth2RetrieveWalletDataParams } from './resources/oauth2';
 import { PaymentRetrieveParams, PaymentSendParams, Payments } from './resources/payments';
-import { ProdIPListParams, ProdIPs } from './resources/prod-ips';
-import { RedeemVoucher, RedeemVoucherRedeemParams } from './resources/redeem-voucher';
-import { RevokeVoucher, RevokeVoucherRevokeParams } from './resources/revoke-voucher';
 import {
   StaticChargeCreateParams,
   StaticChargeRetrieveParams,
   StaticChargeUpdateParams,
   StaticCharges,
 } from './resources/static-charges';
-import { UserID, UserIDRetrieveByGamertagParams } from './resources/user-id';
-import { VoucherRetrieveParams, Vouchers } from './resources/vouchers';
-import { Wallet, WalletRetrieveParams } from './resources/wallet';
+import { UtilCheckIPSupportParams, UtilListProdIPsParams, Utils } from './resources/utils';
+import {
+  VoucherCreateParams,
+  VoucherRedeemParams,
+  VoucherRetrieveParams,
+  VoucherRevokeParams,
+  Vouchers,
+} from './resources/vouchers';
+import { Wallet, WalletRetrieveBalanceParams } from './resources/wallet';
 import {
   WithdrawalRequestCreateParams,
   WithdrawalRequestRetrieveParams,
@@ -724,48 +726,39 @@ export class ZbdPayments {
   internalTransfer: API.InternalTransfer = new API.InternalTransfer(this);
   lnAddress: API.LnAddress = new API.LnAddress(this);
   staticCharges: API.StaticCharges = new API.StaticCharges(this);
-  createVoucher: API.CreateVoucher = new API.CreateVoucher(this);
+  vouchers: API.Vouchers = new API.Vouchers(this);
   withdrawalRequests: API.WithdrawalRequests = new API.WithdrawalRequests(this);
   decodeInvoice: API.DecodeInvoice = new API.DecodeInvoice(this);
   btcusd: API.Btcusd = new API.Btcusd(this);
   payments: API.Payments = new API.Payments(this);
-  userID: API.UserID = new API.UserID(this);
-  vouchers: API.Vouchers = new API.Vouchers(this);
   wallet: API.Wallet = new API.Wallet(this);
-  prodIPs: API.ProdIPs = new API.ProdIPs(this);
-  isSupportedRegion: API.IsSupportedRegion = new API.IsSupportedRegion(this);
+  utils: API.Utils = new API.Utils(this);
   oauth2: API.Oauth2 = new API.Oauth2(this);
-  redeemVoucher: API.RedeemVoucher = new API.RedeemVoucher(this);
-  revokeVoucher: API.RevokeVoucher = new API.RevokeVoucher(this);
-  keysendPayment: API.KeysendPayment = new API.KeysendPayment(this);
-  email: API.Email = new API.Email(this);
+  keysendPayments: API.KeysendPayments = new API.KeysendPayments(this);
+  emailPayments: API.EmailPayments = new API.EmailPayments(this);
 }
 ZbdPayments.Gamertag = Gamertag;
 ZbdPayments.Charges = Charges;
 ZbdPayments.InternalTransfer = InternalTransfer;
 ZbdPayments.LnAddress = LnAddress;
 ZbdPayments.StaticCharges = StaticCharges;
-ZbdPayments.CreateVoucher = CreateVoucher;
+ZbdPayments.Vouchers = Vouchers;
 ZbdPayments.WithdrawalRequests = WithdrawalRequests;
 ZbdPayments.DecodeInvoice = DecodeInvoice;
 ZbdPayments.Btcusd = Btcusd;
 ZbdPayments.Payments = Payments;
-ZbdPayments.UserID = UserID;
-ZbdPayments.Vouchers = Vouchers;
 ZbdPayments.Wallet = Wallet;
-ZbdPayments.ProdIPs = ProdIPs;
-ZbdPayments.IsSupportedRegion = IsSupportedRegion;
+ZbdPayments.Utils = Utils;
 ZbdPayments.Oauth2 = Oauth2;
-ZbdPayments.RedeemVoucher = RedeemVoucher;
-ZbdPayments.RevokeVoucher = RevokeVoucher;
-ZbdPayments.KeysendPayment = KeysendPayment;
-ZbdPayments.Email = Email;
+ZbdPayments.KeysendPayments = KeysendPayments;
+ZbdPayments.EmailPayments = EmailPayments;
 export declare namespace ZbdPayments {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
     Gamertag as Gamertag,
     type GamertagCreateChargeParams as GamertagCreateChargeParams,
+    type GamertagRetrieveByGamertagParams as GamertagRetrieveByGamertagParams,
     type GamertagRetrieveByZbdIDParams as GamertagRetrieveByZbdIDParams,
     type GamertagRetrievePaymentParams as GamertagRetrievePaymentParams,
     type GamertagSendPaymentParams as GamertagSendPaymentParams,
@@ -796,7 +789,13 @@ export declare namespace ZbdPayments {
     type StaticChargeUpdateParams as StaticChargeUpdateParams,
   };
 
-  export { CreateVoucher as CreateVoucher, type CreateVoucherCreateParams as CreateVoucherCreateParams };
+  export {
+    Vouchers as Vouchers,
+    type VoucherCreateParams as VoucherCreateParams,
+    type VoucherRetrieveParams as VoucherRetrieveParams,
+    type VoucherRedeemParams as VoucherRedeemParams,
+    type VoucherRevokeParams as VoucherRevokeParams,
+  };
 
   export {
     WithdrawalRequests as WithdrawalRequests,
@@ -814,17 +813,12 @@ export declare namespace ZbdPayments {
     type PaymentSendParams as PaymentSendParams,
   };
 
-  export { UserID as UserID, type UserIDRetrieveByGamertagParams as UserIDRetrieveByGamertagParams };
-
-  export { Vouchers as Vouchers, type VoucherRetrieveParams as VoucherRetrieveParams };
-
-  export { Wallet as Wallet, type WalletRetrieveParams as WalletRetrieveParams };
-
-  export { ProdIPs as ProdIPs, type ProdIPListParams as ProdIPListParams };
+  export { Wallet as Wallet, type WalletRetrieveBalanceParams as WalletRetrieveBalanceParams };
 
   export {
-    IsSupportedRegion as IsSupportedRegion,
-    type IsSupportedRegionCheckParams as IsSupportedRegionCheckParams,
+    Utils as Utils,
+    type UtilCheckIPSupportParams as UtilCheckIPSupportParams,
+    type UtilListProdIPsParams as UtilListProdIPsParams,
   };
 
   export {
@@ -833,11 +827,10 @@ export declare namespace ZbdPayments {
     type Oauth2RetrieveWalletDataParams as Oauth2RetrieveWalletDataParams,
   };
 
-  export { RedeemVoucher as RedeemVoucher, type RedeemVoucherRedeemParams as RedeemVoucherRedeemParams };
+  export { KeysendPayments as KeysendPayments, type KeysendPaymentSendParams as KeysendPaymentSendParams };
 
-  export { RevokeVoucher as RevokeVoucher, type RevokeVoucherRevokeParams as RevokeVoucherRevokeParams };
-
-  export { KeysendPayment as KeysendPayment, type KeysendPaymentSendParams as KeysendPaymentSendParams };
-
-  export { Email as Email, type EmailSendPaymentParams as EmailSendPaymentParams };
+  export {
+    EmailPayments as EmailPayments,
+    type EmailPaymentSendPaymentParams as EmailPaymentSendPaymentParams,
+  };
 }

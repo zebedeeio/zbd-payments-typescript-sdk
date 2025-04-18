@@ -7,10 +7,10 @@ const client = new ZbdPayments({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource revokeVoucher', () => {
+describe('resource emailPayments', () => {
   // skipped: tests are disabled for the time being
-  test.skip('revoke', async () => {
-    const responsePromise = client.revokeVoucher.revoke();
+  test.skip('sendPayment', async () => {
+    const responsePromise = client.emailPayments.sendPayment();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,10 +21,13 @@ describe('resource revokeVoucher', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('revoke: request options and params are passed correctly', async () => {
+  test.skip('sendPayment: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.revokeVoucher.revoke({ code: 'string', apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
+      client.emailPayments.sendPayment(
+        { amount: 'string', comment: '‎', email: 'string', apikey: 'apikey' },
+        { path: '/_stainless_unknown_path' },
+      ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 });
