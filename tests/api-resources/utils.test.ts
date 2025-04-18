@@ -21,14 +21,6 @@ describe('resource utils', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('checkIPSupport: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.utils.checkIPSupport('ip', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
-  });
-
-  // skipped: tests are disabled for the time being
   test.skip('decodeLightningCharge', async () => {
     const responsePromise = client.utils.decodeLightningCharge();
     const rawResponse = await responsePromise.asResponse();
@@ -44,10 +36,7 @@ describe('resource utils', () => {
   test.skip('decodeLightningCharge: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.utils.decodeLightningCharge(
-        { invoice: 'string', apikey: 'apikey' },
-        { path: '/_stainless_unknown_path' },
-      ),
+      client.utils.decodeLightningCharge({ invoice: 'string' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
@@ -61,14 +50,6 @@ describe('resource utils', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('listProdIPs: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.utils.listProdIPs({ apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
   // skipped: tests are disabled for the time being

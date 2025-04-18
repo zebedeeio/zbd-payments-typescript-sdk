@@ -25,7 +25,7 @@ describe('resource lightningAddress', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.lightningAddress.createCharge(
-        { amount: 'string', description: '‎', lnaddress: 'string', apikey: 'apikey' },
+        { amount: 'string', description: '‎', lnaddress: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
@@ -48,14 +48,7 @@ describe('resource lightningAddress', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.lightningAddress.sendPayment(
-        {
-          amount: 'string',
-          callbackUrl: '‎',
-          comment: '‎',
-          internalId: '‎',
-          lnAddress: 'string',
-          apikey: 'apikey',
-        },
+        { amount: 'string', callbackUrl: '‎', comment: '‎', internalId: '‎', lnAddress: 'string' },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
@@ -71,13 +64,5 @@ describe('resource lightningAddress', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('validate: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.lightningAddress.validate('address', { apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 });

@@ -9,39 +9,30 @@ export class EmailPayments extends APIResource {
   /**
    * Send instant Bitcoin payments to any email.
    */
-  send(params: EmailPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
-    const { apikey, ...body } = params ?? {};
+  send(body: EmailPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/v0/email/send-payment', {
       body,
       ...options,
-      headers: buildHeaders([
-        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
-        options?.headers,
-      ]),
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
   }
 }
 
 export interface EmailPaymentSendParams {
   /**
-   * Body param: The amount for the Payment -> in millisatoshis
+   * The amount for the Payment -> in millisatoshis
    */
   amount?: string;
 
   /**
-   * Body param: Note / description of this Payment (may be shown to recipient)
+   * Note / description of this Payment (may be shown to recipient)
    */
   comment?: string;
 
   /**
-   * Body param: The Email of the intended recipient (e.g. info@zebedee.io)
+   * The Email of the intended recipient (e.g. info@zebedee.io)
    */
   email?: string;
-
-  /**
-   * Header param: ZBD Project API Key
-   */
-  apikey?: string;
 }
 
 export declare namespace EmailPayments {

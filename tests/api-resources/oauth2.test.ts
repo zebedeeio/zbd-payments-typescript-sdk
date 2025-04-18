@@ -48,10 +48,7 @@ describe('resource oauth2', () => {
   test.skip('retrieveUserData: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.oauth2.retrieveUserData(
-        { apikey: 'apikey', usertoken: 'usertoken' },
-        { path: '/_stainless_unknown_path' },
-      ),
+      client.oauth2.retrieveUserData({ usertoken: 'usertoken' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 
@@ -71,10 +68,7 @@ describe('resource oauth2', () => {
   test.skip('retrieveWalletData: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.oauth2.retrieveWalletData(
-        { apikey: 'apikey', usertoken: 'usertoken' },
-        { path: '/_stainless_unknown_path' },
-      ),
+      client.oauth2.retrieveWalletData({ usertoken: 'usertoken' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
 });
