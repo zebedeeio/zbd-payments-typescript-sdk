@@ -16,11 +16,7 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Zbd Payments please follow the respective company's security reporting guidelines.
-
-### Zbd Payments Terms and Policies
-
-Please contact info@zebedee.io for any questions or concerns regarding security of our services.
+or products provided by ZBD please refer to [ZBD's Bug Bounty program](https://zbd.one/bug-bounty) or reach out to us at info@zebedee.io.
 
 ---
 
