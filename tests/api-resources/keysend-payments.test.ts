@@ -3,7 +3,7 @@
 import ZbdPayments from '@zbddev/payments-sdk';
 
 const client = new ZbdPayments({
-  apiKey: 'My API Key',
+  apikey: 'My Apikey',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
