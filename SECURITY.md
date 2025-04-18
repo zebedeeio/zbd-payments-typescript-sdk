@@ -18,6 +18,10 @@ before making any information public.
 If you encounter security issues that are not directly related to SDKs but pertain to the services
 or products provided by Zbd Payments please follow the respective company's security reporting guidelines.
 
+### Zbd Payments Terms and Policies
+
+Please contact info@zebedee.io for any questions or concerns regarding security of our services.
+
 ---
 
 Thank you for helping us keep the SDKs and systems they interact with secure.
