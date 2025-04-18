@@ -23,7 +23,7 @@ The full API of this library can be found in [api.md](api.md).
 import ZbdPayments from '@zbddev/payments-sdk';
 
 const client = new ZbdPayments({
-  apiKey: process.env['ZBD_PAYMENTS_API_KEY'], // This is the default and can be omitted
+  apikey: process.env['ZBD_PAYMENTS_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
@@ -46,7 +46,7 @@ This library includes TypeScript definitions for all request params and response
 import ZbdPayments from '@zbddev/payments-sdk';
 
 const client = new ZbdPayments({
-  apiKey: process.env['ZBD_PAYMENTS_API_KEY'], // This is the default and can be omitted
+  apikey: process.env['ZBD_PAYMENTS_API_KEY'], // This is the default and can be omitted
 });
 
 async function main() {
