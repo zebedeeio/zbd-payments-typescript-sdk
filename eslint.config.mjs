@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^zbd-payments(/.*)?',
+              regex: '^@zbd/payments-sdk(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

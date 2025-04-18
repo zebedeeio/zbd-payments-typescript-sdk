@@ -1,5 +1,5 @@
 {
-  "name": "zbd-payments",
+  "name": "@zbd/payments-sdk",
   "version": "0.0.1-alpha.0",
   "description": "The official TypeScript library for the Zbd Payments API",
   "author": "Zbd Payments <>",
@@ -54,8 +54,8 @@
     "./internal/shims/getBuiltinModule.js": "./internal/shims/nullGetBuiltinModule.js"
   },
   "imports": {
-    "zbd-payments": ".",
-    "zbd-payments/*": "./src/*"
+    "@zbd/payments-sdk": ".",
+    "@zbd/payments-sdk/*": "./src/*"
   },
   "exports": {
     ".": {
