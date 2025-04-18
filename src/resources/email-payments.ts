@@ -5,16 +5,16 @@ import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
-export class CreateVoucher extends APIResource {
+export class EmailPayments extends APIResource {
   /**
-   * Create Voucher
+   * Send instant Bitcoin payments to any email.
    */
-  create(
-    params: CreateVoucherCreateParams | null | undefined = {},
+  sendPayment(
+    params: EmailPaymentSendPaymentParams | null | undefined = {},
     options?: RequestOptions,
   ): APIPromise<void> {
     const { apikey, ...body } = params ?? {};
-    return this._client.post('/v1/create-voucher', {
+    return this._client.post('/v0/email/send-payment', {
       body,
       ...options,
       headers: buildHeaders([
@@ -25,16 +25,21 @@ export class CreateVoucher extends APIResource {
   }
 }
 
-export interface CreateVoucherCreateParams {
+export interface EmailPaymentSendPaymentParams {
   /**
-   * Body param: The amount for the Charge -> in millisatoshis
+   * Body param: The amount for the Payment -> in millisatoshis
    */
   amount?: string;
 
   /**
-   * Body param: Note or comment for this Charge (visible to payer)
+   * Body param: Note / description of this Payment (may be shown to recipient)
    */
-  description?: string;
+  comment?: string;
+
+  /**
+   * Body param: The Email of the intended recipient (e.g. info@zebedee.io)
+   */
+  email?: string;
 
   /**
    * Header param: ZBD Project API Key
@@ -42,6 +47,6 @@ export interface CreateVoucherCreateParams {
   apikey?: string;
 }
 
-export declare namespace CreateVoucher {
-  export { type CreateVoucherCreateParams as CreateVoucherCreateParams };
+export declare namespace EmailPayments {
+  export { type EmailPaymentSendPaymentParams as EmailPaymentSendPaymentParams };
 }

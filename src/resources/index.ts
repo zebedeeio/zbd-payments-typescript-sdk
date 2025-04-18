@@ -2,19 +2,18 @@
 
 export { Btcusd } from './btcusd';
 export { Charges, type ChargeCreateParams, type ChargeRetrieveParams } from './charges';
-export { CreateVoucher, type CreateVoucherCreateParams } from './create-voucher';
 export { DecodeInvoice, type DecodeInvoiceDecodeParams } from './decode-invoice';
-export { Email, type EmailSendPaymentParams } from './email';
+export { EmailPayments, type EmailPaymentSendPaymentParams } from './email-payments';
 export {
   Gamertag,
   type GamertagCreateChargeParams,
+  type GamertagRetrieveByGamertagParams,
   type GamertagRetrieveByZbdIDParams,
   type GamertagRetrievePaymentParams,
   type GamertagSendPaymentParams,
 } from './gamertag';
 export { InternalTransfer, type InternalTransferInitiateParams } from './internal-transfer';
-export { IsSupportedRegion, type IsSupportedRegionCheckParams } from './is-supported-region';
-export { KeysendPayment, type KeysendPaymentSendParams } from './keysend-payment';
+export { KeysendPayments, type KeysendPaymentSendParams } from './keysend-payments';
 export {
   LnAddress,
   type LnAddressCreateChargeParams,
@@ -23,18 +22,21 @@ export {
 } from './ln-address';
 export { Oauth2, type Oauth2RetrieveUserDataParams, type Oauth2RetrieveWalletDataParams } from './oauth2';
 export { Payments, type PaymentRetrieveParams, type PaymentSendParams } from './payments';
-export { ProdIPs, type ProdIPListParams } from './prod-ips';
-export { RedeemVoucher, type RedeemVoucherRedeemParams } from './redeem-voucher';
-export { RevokeVoucher, type RevokeVoucherRevokeParams } from './revoke-voucher';
 export {
   StaticCharges,
   type StaticChargeCreateParams,
   type StaticChargeRetrieveParams,
   type StaticChargeUpdateParams,
 } from './static-charges';
-export { UserID, type UserIDRetrieveByGamertagParams } from './user-id';
-export { Vouchers, type VoucherRetrieveParams } from './vouchers';
-export { Wallet, type WalletRetrieveParams } from './wallet';
+export { Utils, type UtilCheckIPSupportParams, type UtilListProdIPsParams } from './utils';
+export {
+  Vouchers,
+  type VoucherCreateParams,
+  type VoucherRetrieveParams,
+  type VoucherRedeemParams,
+  type VoucherRevokeParams,
+} from './vouchers';
+export { Wallet, type WalletRetrieveBalanceParams } from './wallet';
 export {
   WithdrawalRequests,
   type WithdrawalRequestCreateParams,

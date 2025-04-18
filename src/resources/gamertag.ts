@@ -26,6 +26,24 @@ export class Gamertag extends APIResource {
   }
 
   /**
+   * Retrieve Gamertag from a ZBD user ID.
+   */
+  retrieveByGamertag(
+    gamertag: string,
+    params: GamertagRetrieveByGamertagParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<void> {
+    const { apikey } = params ?? {};
+    return this._client.get(path`/v0/user-id/gamertag/${gamertag}`, {
+      ...options,
+      headers: buildHeaders([
+        { Accept: '*/*', ...(apikey != null ? { apikey: apikey } : undefined) },
+        options?.headers,
+      ]),
+    });
+  }
+
+  /**
    * Retrieve ZBD user ID from a Gamertag.
    */
   retrieveByZbdID(
@@ -117,6 +135,13 @@ export interface GamertagCreateChargeParams {
   apikey?: string;
 }
 
+export interface GamertagRetrieveByGamertagParams {
+  /**
+   * ZBD Project API Key
+   */
+  apikey?: string;
+}
+
 export interface GamertagRetrieveByZbdIDParams {
   /**
    * ZBD Project API Key
@@ -156,6 +181,7 @@ export interface GamertagSendPaymentParams {
 export declare namespace Gamertag {
   export {
     type GamertagCreateChargeParams as GamertagCreateChargeParams,
+    type GamertagRetrieveByGamertagParams as GamertagRetrieveByGamertagParams,
     type GamertagRetrieveByZbdIDParams as GamertagRetrieveByZbdIDParams,
     type GamertagRetrievePaymentParams as GamertagRetrievePaymentParams,
     type GamertagSendPaymentParams as GamertagSendPaymentParams,
