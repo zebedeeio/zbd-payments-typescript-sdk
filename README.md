@@ -27,7 +27,11 @@ const client = new ZbdPayments({
 });
 
 async function main() {
-  await client.gamertags.createCharge();
+  await client.lightningAddress.sendPayment({
+    amount: '500000',
+    comment: 'Instant global payments',
+    lnAddress: 'andreneves@zbd.gg',
+  });
 }
 
 main();
@@ -46,7 +50,12 @@ const client = new ZbdPayments({
 });
 
 async function main() {
-  await client.gamertags.createCharge();
+  const params: ZbdPayments.LightningAddressSendPaymentParams = {
+    amount: '500000',
+    comment: 'Instant global payments',
+    lnAddress: 'andreneves@zbd.gg',
+  };
+  await client.lightningAddress.sendPayment(params);
 }
 
 main();
@@ -63,15 +72,17 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 async function main() {
-  const response = await client.gamertags.createCharge().catch(async (err) => {
-    if (err instanceof ZbdPayments.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
+  const response = await client.lightningAddress
+    .sendPayment({ amount: '500000', comment: 'Instant global payments', lnAddress: 'andreneves@zbd.gg' })
+    .catch(async (err) => {
+      if (err instanceof ZbdPayments.APIError) {
+        console.log(err.status); // 400
+        console.log(err.name); // BadRequestError
+        console.log(err.headers); // {server: 'nginx', ...}
+      } else {
+        throw err;
+      }
+    });
 }
 
 main();
@@ -106,7 +117,7 @@ const client = new ZbdPayments({
 });
 
 // Or, configure per-request:
-await client.gamertags.createCharge({
+await client.lightningAddress.sendPayment({ amount: '500000', comment: 'Instant global payments', lnAddress: 'andreneves@zbd.gg' }, {
   maxRetries: 5,
 });
 ```
@@ -123,7 +134,7 @@ const client = new ZbdPayments({
 });
 
 // Override per-request:
-await client.gamertags.createCharge({
+await client.lightningAddress.sendPayment({ amount: '500000', comment: 'Instant global payments', lnAddress: 'andreneves@zbd.gg' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -146,11 +157,15 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new ZbdPayments();
 
-const response = await client.gamertags.createCharge().asResponse();
+const response = await client.lightningAddress
+  .sendPayment({ amount: '500000', comment: 'Instant global payments', lnAddress: 'andreneves@zbd.gg' })
+  .asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: result, response: raw } = await client.gamertags.createCharge().withResponse();
+const { data: result, response: raw } = await client.lightningAddress
+  .sendPayment({ amount: '500000', comment: 'Instant global payments', lnAddress: 'andreneves@zbd.gg' })
+  .withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(result);
 ```
@@ -343,7 +358,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/zebedeeio/zbd-payments/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/zebedeeio/zbd-payments-typescript-sdk/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 
