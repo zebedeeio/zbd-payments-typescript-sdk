@@ -47,4 +47,16 @@ describe('resource utils', () => {
       client.utils.listProdIPs({ apikey: 'apikey' }, { path: '/_stainless_unknown_path' }),
     ).rejects.toThrow(ZbdPayments.NotFoundError);
   });
+
+  // skipped: tests are disabled for the time being
+  test.skip('retrieveBtcusd', async () => {
+    const responsePromise = client.utils.retrieveBtcusd();
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
 });

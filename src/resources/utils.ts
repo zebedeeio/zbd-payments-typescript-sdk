@@ -41,6 +41,16 @@ export class Utils extends APIResource {
       ]),
     });
   }
+
+  /**
+   * Get the latest price for Bitcoin in US Dollars.
+   */
+  retrieveBtcusd(options?: RequestOptions): APIPromise<void> {
+    return this._client.get('/v0/btcusd', {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
+  }
 }
 
 export interface UtilCheckIPSupportParams {
