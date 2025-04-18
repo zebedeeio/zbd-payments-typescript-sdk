@@ -55,12 +55,12 @@ $ cd zbd-payments-typescript-sdk
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link @zbd/payments-sdk
+$ yarn link @zbddev/payments-sdk
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global @zbd/payments-sdk
+$ pnpm link -—global @zbddev/payments-sdk
 ```
 
 ## Running tests

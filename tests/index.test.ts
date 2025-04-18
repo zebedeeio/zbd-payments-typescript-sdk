@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from '@zbd/payments-sdk/core/api-promise';
+import { APIPromise } from '@zbddev/payments-sdk/core/api-promise';
 
 import util from 'node:util';
-import ZbdPayments from '@zbd/payments-sdk';
-import { APIUserAbortError } from '@zbd/payments-sdk';
+import ZbdPayments from '@zbddev/payments-sdk';
+import { APIUserAbortError } from '@zbddev/payments-sdk';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {
