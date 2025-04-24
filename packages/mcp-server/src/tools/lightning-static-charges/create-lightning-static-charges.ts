@@ -1,0 +1,60 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import type { Metadata } from '../';
+import ZbdPayments from '@zbddev/payments-sdk';
+
+export const metadata: Metadata = {
+  resource: 'lightning_static_charges',
+  operation: 'write',
+  tags: [],
+};
+
+export const tool: Tool = {
+  name: 'create_lightning_static_charges',
+  description: 'Start accepting payments on Lightning with Static QR codes.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      allowedSlots: {
+        type: 'number',
+        description: 'Number of payments this Static Charge can accept',
+      },
+      callbackUrl: {
+        type: 'string',
+        description: 'The endpoint ZBD will POST Charge updates to',
+      },
+      description: {
+        type: 'string',
+        description: 'Note or comment for this Static Charge (visible to payer)',
+      },
+      identifier: {
+        type: 'string',
+        description: 'Used for Custom Lightning Addresses (see guide)',
+      },
+      internalId: {
+        type: 'string',
+        description: 'Open metadata string property',
+      },
+      maxAmount: {
+        type: 'string',
+        description: 'Maximum allowed amount for the Static Charge -> in millisatoshis',
+      },
+      minAmount: {
+        type: 'string',
+        description: 'Minimum allowed amount for the Static Charge -> in millisatoshis',
+      },
+      successMessage: {
+        type: 'string',
+        description: 'Message displayed to the payer AFTER payment settles. Maximum of 144 characters.',
+      },
+    },
+  },
+};
+
+export const handler = (client: ZbdPayments, args: any) => {
+  const { ...body } = args;
+  return client.lightningStaticCharges.create(body);
+};
+
+export default { metadata, tool, handler };
