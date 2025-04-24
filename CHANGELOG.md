@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.6.1 (2025-04-24)
+
+Full Changelog: [v1.6.0...v1.6.1](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.6.0...v1.6.1)
+
+### Chores
+
+* **ci:** add timeout thresholds for CI jobs ([c73272e](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/c73272e4630f5a2303d488b6fde1f81d4b6ed188))
+* configure new SDK language ([0a094ce](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/0a094cec4e6f3c40dd400d2737a9d4bf9c839f6d))
+* **perf:** faster base64 decoding ([1dfe2d3](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/1dfe2d36ad64dfd937a35382b07d9a8c0a330056))
+
 ## 1.6.0 (2025-04-18)
 
 Full Changelog: [v1.5.0...v1.6.0](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.5.0...v1.6.0)
