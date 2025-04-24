@@ -1,13 +1,13 @@
-# Zbd Payments TypeScript MCP Server
+# ZBD Payments TypeScript MCP Server
 
 ## Installation
 
 ### Direct invocation
 
-You can run the MCP Server directly via `npx`:
+You can run the ZBD Payments MCP Server directly via `npx`:
 
 ```sh
-export ZBD_PAYMENTS_API_KEY="My Apikey"
+export ZBD_PAYMENTS_API_KEY="YOUR_ZBD_API_KEY"
 npx -y @zbddev/payments-sdk-mcp
 ```
 
@@ -25,7 +25,7 @@ For clients with a configuration JSON, it might look something like this:
       "command": "npx",
       "args": ["-y", "@zbddev/payments-sdk-mcp"],
       "env": {
-        "ZBD_PAYMENTS_API_KEY": "My Apikey"
+        "ZBD_PAYMENTS_API_KEY": "YOUR_ZBD_API_KEY"
       }
     }
   }
@@ -34,8 +34,7 @@ For clients with a configuration JSON, it might look something like this:
 
 ## Filtering tools
 
-You can run the package on the command line to discover and filter the set of tools that are exposed by the
-MCP Server. This can be helpful for large APIs where including all endpoints at once is too much for your AI's
+You can run the package on the command line to discover and filter the set of tools that are exposed by the ZBD MCP Server. This can be helpful for large APIs where including all endpoints at once is too much for your AI's
 context window.
 
 You can filter by multiple aspects:
