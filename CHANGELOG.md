@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.6.2 (2025-04-24)
+
+Full Changelog: [v1.6.1...v1.6.2](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.6.1...v1.6.2)
+
+### Chores
+
+* **ci:** only use depot for staging repos ([64c02c0](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/64c02c014a6872958cdfdb8ca7bbe8ed4024be21))
+* cleanup readme ([2b9529f](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/2b9529f600d016b49d9b2f18ed1590da06dcc9f9))
+* **internal:** codegen related update ([e1160fb](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/e1160fb44ae9dcc79c82eb9e978f4060fbcb36a7))
+
 ## 1.6.1 (2025-04-24)
 
 Full Changelog: [v1.6.0...v1.6.1](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.6.0...v1.6.1)
