@@ -23,8 +23,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: any) => {
-  const { gamertag } = args;
+export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+  const { gamertag, ...body } = args as any;
   return client.gamertags.retrieveByGamertag(gamertag);
 };
 

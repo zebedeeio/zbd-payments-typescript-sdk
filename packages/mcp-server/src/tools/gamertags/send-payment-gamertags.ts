@@ -32,8 +32,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: any) => {
-  const { ...body } = args;
+export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.gamertags.sendPayment(body);
 };
 
