@@ -9,6 +9,15 @@ import { path } from '../internal/utils/path';
 export class LightningAddress extends APIResource {
   /**
    * Generate a payment request for a Lightning Address.
+   *
+   * @example
+   * ```ts
+   * await client.lightningAddress.createCharge({
+   *   amount: 'string',
+   *   description: 'string',
+   *   lnaddress: 'string',
+   * });
+   * ```
    */
   createCharge(
     body: LightningAddressCreateChargeParams | null | undefined = {},
@@ -23,6 +32,17 @@ export class LightningAddress extends APIResource {
 
   /**
    * Send instant Bitcoin payments to any Lightning Address.
+   *
+   * @example
+   * ```ts
+   * await client.lightningAddress.sendPayment({
+   *   amount: 'string',
+   *   callbackUrl: 'string',
+   *   comment: 'string',
+   *   internalId: 'string',
+   *   lnAddress: 'string',
+   * });
+   * ```
    */
   sendPayment(
     body: LightningAddressSendPaymentParams | null | undefined = {},
@@ -37,6 +57,11 @@ export class LightningAddress extends APIResource {
 
   /**
    * Verify the validity of a Lightning Address.
+   *
+   * @example
+   * ```ts
+   * await client.lightningAddress.validate('address');
+   * ```
    */
   validate(address: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/ln-address/validate/${address}`, {
