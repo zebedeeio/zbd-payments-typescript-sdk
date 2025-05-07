@@ -8,6 +8,15 @@ import { RequestOptions } from '../internal/request-options';
 export class EmailPayments extends APIResource {
   /**
    * Send instant Bitcoin payments to any email.
+   *
+   * @example
+   * ```ts
+   * await client.emailPayments.send({
+   *   amount: 'string',
+   *   comment: 'string',
+   *   email: 'string',
+   * });
+   * ```
    */
   send(body: EmailPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/v0/email/send-payment', {

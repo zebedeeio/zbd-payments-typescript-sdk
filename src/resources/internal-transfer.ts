@@ -8,6 +8,14 @@ import { RequestOptions } from '../internal/request-options';
 export class InternalTransfer extends APIResource {
   /**
    * Performs a transfer of funds between two Projects.
+   *
+   * @example
+   * ```ts
+   * await client.internalTransfer.initiate({
+   *   amount: 'string',
+   *   receiverWalletId: 'string',
+   * });
+   * ```
    */
   initiate(
     body: InternalTransferInitiateParams | null | undefined = {},

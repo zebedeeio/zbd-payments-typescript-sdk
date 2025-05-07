@@ -9,6 +9,17 @@ import { path } from '../internal/utils/path';
 export class LightningCharges extends APIResource {
   /**
    * Start receiving instant Bitcoin payments through the ZBD API.
+   *
+   * @example
+   * ```ts
+   * await client.lightningCharges.create({
+   *   amount: 'string',
+   *   callbackUrl: 'string',
+   *   description: 'string',
+   *   expiresIn: NaN,
+   *   internalId: 'string',
+   * });
+   * ```
    */
   create(
     body: LightningChargeCreateParams | null | undefined = {},
@@ -23,6 +34,11 @@ export class LightningCharges extends APIResource {
 
   /**
    * Retrieve all data about a single Charge.
+   *
+   * @example
+   * ```ts
+   * await client.lightningCharges.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/charges/${id}`, {
