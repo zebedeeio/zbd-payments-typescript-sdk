@@ -9,6 +9,18 @@ import { path } from '../internal/utils/path';
 export class Gamertags extends APIResource {
   /**
    * Generate a payment request for a ZBD User.
+   *
+   * @example
+   * ```ts
+   * await client.gamertags.createCharge({
+   *   amount: 'string',
+   *   callbackUrl: 'string',
+   *   description: 'string',
+   *   expiresIn: NaN,
+   *   gamertag: 'string',
+   *   internalId: 'string',
+   * });
+   * ```
    */
   createCharge(
     body: GamertagCreateChargeParams | null | undefined = {},
@@ -23,6 +35,11 @@ export class Gamertags extends APIResource {
 
   /**
    * Retrieve Gamertag from a ZBD user ID.
+   *
+   * @example
+   * ```ts
+   * await client.gamertags.retrieveByGamertag('gamertag');
+   * ```
    */
   retrieveByGamertag(gamertag: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/user-id/gamertag/${gamertag}`, {
@@ -33,6 +50,11 @@ export class Gamertags extends APIResource {
 
   /**
    * Retrieve ZBD user ID from a Gamertag.
+   *
+   * @example
+   * ```ts
+   * await client.gamertags.retrieveByZbdID('id');
+   * ```
    */
   retrieveByZbdID(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/gamertag/user-id/${id}`, {
@@ -43,6 +65,11 @@ export class Gamertags extends APIResource {
 
   /**
    * Retrieve all data about a Payment sent to ZBD User.
+   *
+   * @example
+   * ```ts
+   * await client.gamertags.retrievePayment('id');
+   * ```
    */
   retrievePayment(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/gamertag/transaction/${id}`, {
@@ -53,6 +80,15 @@ export class Gamertags extends APIResource {
 
   /**
    * Send instant Bitcoin payments to ZBD Users.
+   *
+   * @example
+   * ```ts
+   * await client.gamertags.sendPayment({
+   *   amount: 'string',
+   *   description: 'string',
+   *   gamertag: 'string',
+   * });
+   * ```
    */
   sendPayment(
     body: GamertagSendPaymentParams | null | undefined = {},

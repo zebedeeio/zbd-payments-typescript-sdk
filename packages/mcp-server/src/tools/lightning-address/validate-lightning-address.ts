@@ -23,8 +23,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: any) => {
-  const { address } = args;
+export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+  const { address, ...body } = args as any;
   return client.lightningAddress.validate(address);
 };
 

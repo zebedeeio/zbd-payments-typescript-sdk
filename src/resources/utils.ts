@@ -9,6 +9,11 @@ import { path } from '../internal/utils/path';
 export class Utils extends APIResource {
   /**
    * Verify if a user is coming from a supported region.
+   *
+   * @example
+   * ```ts
+   * await client.utils.checkIPSupport('ip');
+   * ```
    */
   checkIPSupport(ip: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/is-supported-region/${ip}`, {
@@ -19,6 +24,13 @@ export class Utils extends APIResource {
 
   /**
    * Understand the inner properties of a Charge QR code.
+   *
+   * @example
+   * ```ts
+   * await client.utils.decodeLightningCharge({
+   *   invoice: 'string',
+   * });
+   * ```
    */
   decodeLightningCharge(
     body: UtilDecodeLightningChargeParams | null | undefined = {},
@@ -33,6 +45,11 @@ export class Utils extends APIResource {
 
   /**
    * Get the official IP addresses of ZBD servers.
+   *
+   * @example
+   * ```ts
+   * await client.utils.listProdIPs();
+   * ```
    */
   listProdIPs(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/v0/prod-ips', {
@@ -43,6 +60,11 @@ export class Utils extends APIResource {
 
   /**
    * Get the latest price for Bitcoin in US Dollars.
+   *
+   * @example
+   * ```ts
+   * await client.utils.retrieveBtcUsd();
+   * ```
    */
   retrieveBtcUsd(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/v0/btcusd', {

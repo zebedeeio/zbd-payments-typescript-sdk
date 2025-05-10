@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.7.0 (2025-05-10)
+
+Full Changelog: [v1.6.2...v1.7.0](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.6.2...v1.7.0)
+
+### Features
+
+* **client:** add withOptions helper ([be1f083](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/be1f0832068ffc3f335cfb21f74f15f1fe61cc2b))
+* more gracefully handle $refs and work around schema limitations ([7f413d3](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/7f413d39351ce57a8efce6047186b630f38db58c))
+
+
+### Bug Fixes
+
+* **mcp:** remove ajv dependency so MCP servers are more compatible with Cloudflare Workers ([43242ee](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/43242ee48dddf0adadc7a394a54139bb8e4c9711))
+
+
+### Chores
+
+* **build:** automatically build subpackages if present ([1e83ca6](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/1e83ca6e20b22a5e13a68eab7e7e3fb1003c58be))
+* **client:** drop support for EOL node versions ([fa0b428](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/fa0b4282b30b6712b0a1dc406e05722684615d8f))
+* **internal:** codegen related update ([2c3d99c](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/2c3d99c91be4462c3bc9f8fa628fa6c0270bb12c))
+* **internal:** refactor utils ([8af1519](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/8af15194a74a619e49500f7f4610bc2bffb52ab1))
+* **internal:** share typescript helpers ([3663fdc](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/3663fdc3e0954c3dbeaff99ca0200340250d37c1))
+
+
+### Documentation
+
+* add examples to tsdocs ([7e3cc80](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/7e3cc8062e188f95fd5f1f1be48af6beccebf2f7))
+* **readme:** fix typo ([5922003](https://github.com/zebedeeio/zbd-payments-typescript-sdk/commit/5922003febed1cb0a579a44b4116c83459f989d2))
+
 ## 1.6.2 (2025-04-24)
 
 Full Changelog: [v1.6.1...v1.6.2](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.6.1...v1.6.2)

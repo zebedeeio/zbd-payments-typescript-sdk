@@ -9,6 +9,14 @@ import { path } from '../internal/utils/path';
 export class Vouchers extends APIResource {
   /**
    * Create Voucher
+   *
+   * @example
+   * ```ts
+   * await client.vouchers.create({
+   *   amount: 'string',
+   *   description: 'string',
+   * });
+   * ```
    */
   create(body: VoucherCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/v1/create-voucher', {
@@ -20,6 +28,11 @@ export class Vouchers extends APIResource {
 
   /**
    * Get Voucher
+   *
+   * @example
+   * ```ts
+   * await client.vouchers.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/vouchers/${id}`, {
@@ -30,6 +43,11 @@ export class Vouchers extends APIResource {
 
   /**
    * Redeem Voucher
+   *
+   * @example
+   * ```ts
+   * await client.vouchers.redeem({ code: 'string' });
+   * ```
    */
   redeem(body: VoucherRedeemParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/v0/redeem-voucher', {
@@ -41,6 +59,11 @@ export class Vouchers extends APIResource {
 
   /**
    * Revoke Voucher
+   *
+   * @example
+   * ```ts
+   * await client.vouchers.revoke({ code: 'string' });
+   * ```
    */
   revoke(body: VoucherRevokeParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/v0/revoke-voucher', {
