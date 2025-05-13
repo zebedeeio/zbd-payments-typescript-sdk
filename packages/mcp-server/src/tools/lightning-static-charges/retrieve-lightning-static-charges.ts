@@ -23,8 +23,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: any) => {
-  const { id } = args;
+export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.lightningStaticCharges.retrieve(id);
 };
 

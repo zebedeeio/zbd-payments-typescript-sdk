@@ -9,6 +9,17 @@ import { path } from '../internal/utils/path';
 export class WithdrawalRequests extends APIResource {
   /**
    * Start creating Bitcoin voucher QR codes.
+   *
+   * @example
+   * ```ts
+   * await client.withdrawalRequests.create({
+   *   amount: 'string',
+   *   callbackUrl: 'string',
+   *   description: 'string',
+   *   expiresIn: NaN,
+   *   internalId: 'string',
+   * });
+   * ```
    */
   create(
     body: WithdrawalRequestCreateParams | null | undefined = {},
@@ -23,6 +34,11 @@ export class WithdrawalRequests extends APIResource {
 
   /**
    * Retrieve all data about a single Withdrawal Request.
+   *
+   * @example
+   * ```ts
+   * await client.withdrawalRequests.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/withdrawal-requests/${id}`, {

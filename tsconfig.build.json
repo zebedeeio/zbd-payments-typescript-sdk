@@ -6,7 +6,7 @@
     "rootDir": "./dist/src",
     "paths": {
       "@zbddev/payments-sdk/*": ["dist/src/*"],
-      "@zbddev/payments-sdk": ["dist/src/index.ts"],
+      "@zbddev/payments-sdk": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

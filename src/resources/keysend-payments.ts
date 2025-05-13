@@ -8,6 +8,18 @@ import { RequestOptions } from '../internal/request-options';
 export class KeysendPayments extends APIResource {
   /**
    * Start sending Keysend payments on the Lightning Network.
+   *
+   * @example
+   * ```ts
+   * await client.keysendPayments.send({
+   *   amount: 'string',
+   *   callbackUrl: 'string',
+   *   metadata: true,
+   *   pubkey: 'string',
+   *   tlvRecords: null,
+   *   value: 'myTLVRecordValue',
+   * });
+   * ```
    */
   send(body: KeysendPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/v0/keysend-payment', {

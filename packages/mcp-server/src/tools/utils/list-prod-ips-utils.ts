@@ -19,8 +19,7 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: any) => {
-  const {} = args;
+export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   return client.utils.listProdIPs();
 };
 

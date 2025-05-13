@@ -9,6 +9,20 @@ import { path } from '../internal/utils/path';
 export class LightningStaticCharges extends APIResource {
   /**
    * Start accepting payments on Lightning with Static QR codes.
+   *
+   * @example
+   * ```ts
+   * await client.lightningStaticCharges.create({
+   *   allowedSlots: 123,
+   *   callbackUrl: 'string',
+   *   description: 'string',
+   *   identifier: 'string',
+   *   internalId: 'string',
+   *   maxAmount: 'string',
+   *   minAmount: 'string',
+   *   successMessage: 'string',
+   * });
+   * ```
    */
   create(
     body: LightningStaticChargeCreateParams | null | undefined = {},
@@ -23,6 +37,11 @@ export class LightningStaticCharges extends APIResource {
 
   /**
    * Retrieve all data about a single Static Charge.
+   *
+   * @example
+   * ```ts
+   * await client.lightningStaticCharges.retrieve('id');
+   * ```
    */
   retrieve(id: string, options?: RequestOptions): APIPromise<void> {
     return this._client.get(path`/v0/static-charges/${id}`, {
@@ -33,6 +52,19 @@ export class LightningStaticCharges extends APIResource {
 
   /**
    * Change the configuration of a Static Charge QR code.
+   *
+   * @example
+   * ```ts
+   * await client.lightningStaticCharges.update('id', {
+   *   allowedSlots: 123,
+   *   callbackUrl: 'string',
+   *   description: 'string',
+   *   internalId: 'string',
+   *   maxAmount: 'string',
+   *   minAmount: 'string',
+   *   successMessage: 'string',
+   * });
+   * ```
    */
   update(
     id: string,
