@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'internal_transfer',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/internal-transfer',
+  operationId: 'post_v0_internal-transfer',
 };
 
 export const tool: Tool = {

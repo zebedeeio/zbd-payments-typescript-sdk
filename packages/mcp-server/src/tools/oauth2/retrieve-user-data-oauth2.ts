@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'oauth2',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v1/oauth2/user',
+  operationId: 'get_v1_oauth2_user',
 };
 
 export const tool: Tool = {

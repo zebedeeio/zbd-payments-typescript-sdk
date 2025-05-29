@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'utils',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/btcusd',
+  operationId: 'get_v0_btcusd',
 };
 
 export const tool: Tool = {

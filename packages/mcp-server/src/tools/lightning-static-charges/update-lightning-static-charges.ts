@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'lightning_static_charges',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/v0/static-charges/{id}',
+  operationId: 'patch_v0_static-charges_id',
 };
 
 export const tool: Tool = {

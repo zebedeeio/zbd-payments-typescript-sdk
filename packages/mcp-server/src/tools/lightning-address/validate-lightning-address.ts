@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'lightning_address',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/ln-address/validate/{address}',
+  operationId: 'get_v0_ln-address_validate_address',
 };
 
 export const tool: Tool = {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'utils',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/decode-invoice',
+  operationId: 'post_v0_decode-invoice',
 };
 
 export const tool: Tool = {

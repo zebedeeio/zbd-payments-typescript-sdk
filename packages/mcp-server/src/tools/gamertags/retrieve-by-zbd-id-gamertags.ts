@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'gamertags',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/gamertag/user-id/{id}',
+  operationId: 'get_v0_gamertag_user-id_id',
 };
 
 export const tool: Tool = {

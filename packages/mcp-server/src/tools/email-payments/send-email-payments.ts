@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'email_payments',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/email/send-payment',
+  operationId: 'post_v0_email_send-payment',
 };
 
 export const tool: Tool = {

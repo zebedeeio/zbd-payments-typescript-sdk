@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'lightning_static_charges',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/static-charges/{id}',
+  operationId: 'get_v0_static-charges_id',
 };
 
 export const tool: Tool = {
