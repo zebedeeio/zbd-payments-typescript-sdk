@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'gamertags',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/gamertag/send-payment',
+  operationId: 'post_v0_gamertag_send-payment',
 };
 
 export const tool: Tool = {

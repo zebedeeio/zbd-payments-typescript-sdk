@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'vouchers',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/redeem-voucher',
+  operationId: 'post_v0_redeem-voucher',
 };
 
 export const tool: Tool = {

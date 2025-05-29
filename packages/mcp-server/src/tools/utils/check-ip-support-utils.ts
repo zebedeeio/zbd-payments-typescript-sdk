@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'utils',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/is-supported-region/{ip}',
+  operationId: 'get_v0_is-supported-region_IP_ADDRESS',
 };
 
 export const tool: Tool = {

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'lightning_payments',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/payments',
+  operationId: 'post_v0_payments',
 };
 
 export const tool: Tool = {

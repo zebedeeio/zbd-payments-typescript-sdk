@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'withdrawal_requests',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/withdrawal-requests',
+  operationId: 'post_v0_withdrawal-requests',
 };
 
 export const tool: Tool = {

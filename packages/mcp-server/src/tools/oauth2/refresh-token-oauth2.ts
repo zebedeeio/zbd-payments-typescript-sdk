@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'oauth2',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v1/oauth2/token',
+  operationId: 'post_v1_oauth2_token',
 };
 
 export const tool: Tool = {

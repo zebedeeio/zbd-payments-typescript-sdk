@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'utils',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/prod-ips',
+  operationId: 'get_v0_prod-ips',
 };
 
 export const tool: Tool = {

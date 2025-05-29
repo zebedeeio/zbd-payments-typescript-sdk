@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'keysend_payments',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/keysend-payment',
+  operationId: 'post_v0_keysend-payment',
 };
 
 export const tool: Tool = {

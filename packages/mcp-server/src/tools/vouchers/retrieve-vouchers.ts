@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   resource: 'vouchers',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/vouchers/{id}',
+  operationId: 'get_v0_vouchers_VOUCHER_ID',
 };
 
 export const tool: Tool = {
