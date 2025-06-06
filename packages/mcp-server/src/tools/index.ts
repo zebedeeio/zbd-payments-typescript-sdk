@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ZbdPayments from '@zbddev/payments-sdk';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import create_charge_gamertags from './gamertags/create-charge-gamertags';
 import retrieve_by_gamertag_gamertags from './gamertags/retrieve-by-gamertag-gamertags';
@@ -36,27 +37,6 @@ import retrieve_user_data_oauth2 from './oauth2/retrieve-user-data-oauth2';
 import retrieve_wallet_data_oauth2 from './oauth2/retrieve-wallet-data-oauth2';
 import send_keysend_payments from './keysend-payments/send-keysend-payments';
 import send_email_payments from './email-payments/send-email-payments';
-
-export type HandlerFunction = (
-  client: ZbdPayments,
-  args: Record<string, unknown> | undefined,
-) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-
-  httpMethod?: string;
-  httpPath?: string;
-  operationId?: string;
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 

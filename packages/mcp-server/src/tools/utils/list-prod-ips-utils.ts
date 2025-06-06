@@ -1,5 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from '@zbddev/payments-sdk-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
 import ZbdPayments from '@zbddev/payments-sdk';
@@ -22,8 +24,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
-  return client.utils.listProdIPs();
+export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+  await client.utils.listProdIPs();
+  return asTextContentResult('Successful tool call');
 };
 
 export default { metadata, tool, handler };
