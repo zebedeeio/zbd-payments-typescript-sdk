@@ -1,6 +1,6 @@
 # Zbd Payments TypeScript API Library
 
-[![NPM version](https://img.shields.io/npm/v/@zbddev/payments-sdk.svg)](https://npmjs.org/package/@zbddev/payments-sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@zbddev/payments-sdk)
+[![NPM version](<https://img.shields.io/npm/v/@zbddev/payments-sdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/@zbddev/payments-sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@zbddev/payments-sdk)
 
 This library provides convenient access to the Zbd Payments REST API from server-side TypeScript or JavaScript.
 
