@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.1 (2025-06-19)
+
+Full Changelog: [v1.8.0...v1.8.1](https://github.com/zbdpay/zbd-payments-typescript-sdk/compare/v1.8.0...v1.8.1)
+
+### Chores
+
+* update SDK settings ([a71d016](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/a71d01613415a7f01ee565248307b836f32367e1))
+* update SDK settings ([c245bc9](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/c245bc95ab85212ad0a7873a17fea80f867dfe3c))
+
 ## 1.8.0 (2025-06-19)
 
 Full Changelog: [v1.7.0...v1.8.0](https://github.com/zbdpay/zbd-payments-typescript-sdk/compare/v1.7.0...v1.8.0)
