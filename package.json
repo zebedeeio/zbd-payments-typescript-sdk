@@ -1,6 +1,6 @@
 {
   "name": "@zbddev/payments-sdk",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "The official TypeScript library for the ZBD Payments API",
   "author": "ZBD <info@zebedee.io>",
   "types": "dist/index.d.ts",
