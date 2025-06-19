@@ -20,7 +20,7 @@ or products provided by Zbd Payments, please follow the respective company's sec
 
 ### Zbd Payments Terms and Policies
 
-Please contact info@zebedee.io for any questions or concerns regarding the security of our services.
+Please contact info@zbdpay.com for any questions or concerns regarding the security of our services.
 
 ---
 

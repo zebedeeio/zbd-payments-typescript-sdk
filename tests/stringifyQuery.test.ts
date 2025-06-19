@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { ZbdPayments } from '@zbddev/payments-sdk';
+import { ZbdPayments } from '@zbdpay/payments-sdk';
 
 const { stringifyQuery } = ZbdPayments.prototype as any;
 

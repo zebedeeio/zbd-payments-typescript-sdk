@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from '@zbddev/payments-sdk/internal/uploads';
-import { toFile } from '@zbddev/payments-sdk/core/uploads';
+import { multipartFormRequestOptions, createForm } from '@zbdpay/payments-sdk/internal/uploads';
+import { toFile } from '@zbdpay/payments-sdk/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

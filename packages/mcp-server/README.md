@@ -8,7 +8,7 @@ You can run the MCP Server directly via `npx`:
 
 ```sh
 export ZBD_PAYMENTS_API_KEY="My Apikey"
-npx -y @zbddev/payments-sdk-mcp@latest
+npx -y @zbdpay/payments-sdk-mcp@latest
 ```
 
 ### Via MCP Client
@@ -21,9 +21,9 @@ For clients with a configuration JSON, it might look something like this:
 ```json
 {
   "mcpServers": {
-    "zbddev_payments_sdk_api": {
+    "zbdpay_payments_sdk_api": {
       "command": "npx",
-      "args": ["-y", "@zbddev/payments-sdk-mcp", "--client=claude", "--tools=dynamic"],
+      "args": ["-y", "@zbdpay/payments-sdk-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
         "ZBD_PAYMENTS_API_KEY": "My Apikey"
       }
@@ -128,10 +128,10 @@ over time, you can manually enable or disable certain capabilities:
 
 ```js
 // Import the server, generated endpoints, or the init function
-import { server, endpoints, init } from "@zbddev/payments-sdk-mcp/server";
+import { server, endpoints, init } from "@zbdpay/payments-sdk-mcp/server";
 
 // import a specific tool
-import createChargeGamertags from "@zbddev/payments-sdk-mcp/tools/gamertags/create-charge-gamertags";
+import createChargeGamertags from "@zbdpay/payments-sdk-mcp/tools/gamertags/create-charge-gamertags";
 
 // initialize the server and all endpoints
 init({ server, endpoints });
