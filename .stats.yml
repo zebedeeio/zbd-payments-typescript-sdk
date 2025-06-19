@@ -1,4 +1,4 @@
 configured_endpoints: 33
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/zbd%2Fzbd-payments-745914fb2a7f80f0c8107a0b3f5ecc29a8cdbc52ef9e1d5bc343019775d4f20e.yml
-openapi_spec_hash: dc492114b4fc5b31be69aff404b8fda8
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/zbd%2Fzbd-payments-0d5fdd96023d3682e98cd63fb53164f30b57e59737bcb62b50f89a02108c860f.yml
+openapi_spec_hash: e7b2dd916b5291720d93c7d157f6d39b
 config_hash: b0149c7b533e8586cb2b2447e16f8877
