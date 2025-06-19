@@ -1,13 +1,18 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from '@zbdpay/payments-sdk-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 export const metadata: Metadata = {
   resource: 'lightning_static_charges',
   operation: 'write',
   tags: [],
+  httpMethod: 'patch',
+  httpPath: '/v0/static-charges/{id}',
+  operationId: 'patch_v0_static-charges_id',
 };
 
 export const tool: Tool = {
@@ -51,9 +56,10 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   const { id, ...body } = args as any;
-  return client.lightningStaticCharges.update(id, body);
+  await client.lightningStaticCharges.update(id, body);
+  return asTextContentResult('Successful tool call');
 };
 
 export default { metadata, tool, handler };

@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from '@zbddev/payments-sdk/core/api-promise';
+import { APIPromise } from '@zbdpay/payments-sdk/core/api-promise';
 
 import util from 'node:util';
-import ZbdPayments from '@zbddev/payments-sdk';
-import { APIUserAbortError } from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
+import { APIUserAbortError } from '@zbdpay/payments-sdk';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {
@@ -313,6 +313,28 @@ describe('instantiate client', () => {
       process.env['ZBD_PAYMENTS_BASE_URL'] = '  '; // blank
       const client = new ZbdPayments({ apikey: 'My Apikey' });
       expect(client.baseURL).toEqual('https://api.zebedee.io');
+    });
+
+    test('in request options', () => {
+      const client = new ZbdPayments({ apikey: 'My Apikey' });
+      expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
+        'http://localhost:5000/option/foo',
+      );
+    });
+
+    test('in request options overridden by client options', () => {
+      const client = new ZbdPayments({ apikey: 'My Apikey', baseURL: 'http://localhost:5000/client' });
+      expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
+        'http://localhost:5000/client/foo',
+      );
+    });
+
+    test('in request options overridden by env variable', () => {
+      process.env['ZBD_PAYMENTS_BASE_URL'] = 'http://localhost:5000/env';
+      const client = new ZbdPayments({ apikey: 'My Apikey' });
+      expect(client.buildURL('/foo', null, 'http://localhost:5000/option')).toEqual(
+        'http://localhost:5000/env/foo',
+      );
     });
   });
 

@@ -1,53 +1,19 @@
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { endpoints, Filter } from './tools';
-import { ClientCapabilities } from './compat';
+import { ClientCapabilities, knownClients, ClientType } from './compat';
 
-type ClientType = 'openai-agents' | 'claude' | 'claude-code' | 'cursor';
-
-// Client presets for compatibility
-// Note that these could change over time as models get better, so this is
-// a best effort.
-const CLIENT_PRESETS: Record<ClientType, ClientCapabilities> = {
-  'openai-agents': {
-    topLevelUnions: false,
-    validJson: true,
-    refs: true,
-    unions: true,
-    formats: true,
-    toolNameLength: undefined,
-  },
-  claude: {
-    topLevelUnions: true,
-    validJson: false,
-    refs: true,
-    unions: true,
-    formats: true,
-    toolNameLength: undefined,
-  },
-  'claude-code': {
-    topLevelUnions: false,
-    validJson: true,
-    refs: true,
-    unions: true,
-    formats: true,
-    toolNameLength: undefined,
-  },
-  cursor: {
-    topLevelUnions: false,
-    validJson: true,
-    refs: false,
-    unions: false,
-    formats: false,
-    toolNameLength: 50,
-  },
+export type CLIOptions = McpOptions & {
+  list: boolean;
 };
 
-export interface ParsedOptions {
+export type McpOptions = {
+  client: ClientType | undefined;
+  includeDynamicTools: boolean | undefined;
+  includeAllTools: boolean | undefined;
   filters: Filter[];
-  capabilities: ClientCapabilities;
-  list: boolean;
-}
+  capabilities?: Partial<ClientCapabilities>;
+};
 
 const CAPABILITY_CHOICES = [
   'top-level-unions',
@@ -78,8 +44,20 @@ function parseCapabilityValue(cap: string): { name: Capability; value?: number }
   return { name: cap as Capability };
 }
 
-export function parseOptions(): ParsedOptions {
+export function parseOptions(): CLIOptions {
   const opts = yargs(hideBin(process.argv))
+    .option('tools', {
+      type: 'string',
+      array: true,
+      choices: ['dynamic', 'all'],
+      description: 'Use dynamic tools or all tools',
+    })
+    .option('no-tools', {
+      type: 'string',
+      array: true,
+      choices: ['dynamic', 'all'],
+      description: 'Do not use any dynamic or all tools',
+    })
     .option('tool', {
       type: 'string',
       array: true,
@@ -127,7 +105,7 @@ export function parseOptions(): ParsedOptions {
     })
     .option('client', {
       type: 'string',
-      choices: Object.keys(CLIENT_PRESETS),
+      choices: Object.keys(knownClients),
       description: 'Specify the MCP client being used',
     })
     .option('capability', {
@@ -215,14 +193,6 @@ export function parseOptions(): ParsedOptions {
     toolNameLength: undefined,
   };
 
-  // Apply client preset if specified
-  if (typeof argv.client === 'string') {
-    const clientKey = argv.client as ClientType;
-    if (CLIENT_PRESETS[clientKey]) {
-      Object.assign(clientCapabilities, CLIENT_PRESETS[clientKey]);
-    }
-  }
-
   // Apply individual capability overrides
   if (Array.isArray(argv.capability)) {
     for (const cap of argv.capability) {
@@ -262,7 +232,17 @@ export function parseOptions(): ParsedOptions {
     }
   }
 
+  const explicitTools = Boolean(argv.tools || argv.noTools);
+  const includeDynamicTools =
+    explicitTools ? argv.tools?.includes('dynamic') && !argv.noTools?.includes('dynamic') : undefined;
+  const includeAllTools =
+    explicitTools ? argv.tools?.includes('all') && !argv.noTools?.includes('all') : undefined;
+
+  const client = argv.client as ClientType;
   return {
+    client: client && knownClients[client] ? client : undefined,
+    includeDynamicTools,
+    includeAllTools,
     filters,
     capabilities: clientCapabilities,
     list: argv.list || false,
@@ -301,7 +281,7 @@ Client Presets (--client):
 Presets like '--client=openai-agents' or '--client=cursor' automatically configure these capabilities based on current known limitations of those clients, simplifying setup.
 
 Current presets:
-${JSON.stringify(CLIENT_PRESETS, null, 2)}
+${JSON.stringify(knownClients, null, 2)}
   `;
 }
 

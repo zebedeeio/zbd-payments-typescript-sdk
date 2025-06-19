@@ -1,13 +1,18 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from '@zbdpay/payments-sdk-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 export const metadata: Metadata = {
   resource: 'lightning_address',
   operation: 'read',
   tags: [],
+  httpMethod: 'get',
+  httpPath: '/v0/ln-address/validate/{address}',
+  operationId: 'get_v0_ln-address_validate_address',
 };
 
 export const tool: Tool = {
@@ -23,9 +28,10 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   const { address, ...body } = args as any;
-  return client.lightningAddress.validate(address);
+  await client.lightningAddress.validate(address);
+  return asTextContentResult('Successful tool call');
 };
 
 export default { metadata, tool, handler };

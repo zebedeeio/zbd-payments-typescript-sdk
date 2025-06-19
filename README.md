@@ -1,15 +1,15 @@
 # ZBD Payments TypeScript SDK
 
-[![NPM version](https://img.shields.io/npm/v/@zbddev/payments-sdk.svg)](https://npmjs.org/package/@zbddev/payments-sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@zbddev/payments-sdk)
+[![NPM version](<https://img.shields.io/npm/v/@zbdpay/payments-sdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/@zbdpay/payments-sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@zbdpay/payments-sdk)
 
 This library provides convenient access to the ZBD Payments REST API from server-side TypeScript or JavaScript.
 
-The REST API documentation can be found on [zbd.dev](https://zbd.dev). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.zbdpay.com](https://docs.zbdpay.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-npm install @zbddev/payments-sdk
+npm install @zbdpay/payments-sdk
 ```
 
 ## Usage
@@ -18,21 +18,17 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 const client = new ZbdPayments({
   apikey: process.env['ZBD_PAYMENTS_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  await client.lightningAddress.sendPayment({
-    amount: '500000',
-    comment: 'Instant global payments',
-    lnAddress: 'andreneves@zbd.gg',
-  });
-}
-
-main();
+await client.lightningAddress.sendPayment({
+  amount: '500000',
+  comment: 'Instant global payments',
+  lnAddress: 'andreneves@zbd.gg',
+});
 ```
 
 ### Request & Response types
@@ -41,22 +37,18 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 const client = new ZbdPayments({
   apikey: process.env['ZBD_PAYMENTS_API_KEY'], // This is the default and can be omitted
 });
 
-async function main() {
-  const params: ZbdPayments.LightningAddressSendPaymentParams = {
-    amount: '500000',
-    comment: 'Instant global payments',
-    lnAddress: 'andreneves@zbd.gg',
-  };
-  await client.lightningAddress.sendPayment(params);
-}
-
-main();
+const params: ZbdPayments.LightningAddressSendPaymentParams = {
+  amount: '500000',
+  comment: 'Instant global payments',
+  lnAddress: 'andreneves@zbd.gg',
+};
+await client.lightningAddress.sendPayment(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -69,21 +61,17 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-async function main() {
-  const response = await client.lightningAddress
-    .sendPayment({ amount: '500000', comment: 'Instant global payments', lnAddress: 'andreneves@zbd.gg' })
-    .catch(async (err) => {
-      if (err instanceof ZbdPayments.APIError) {
-        console.log(err.status); // 400
-        console.log(err.name); // BadRequestError
-        console.log(err.headers); // {server: 'nginx', ...}
-      } else {
-        throw err;
-      }
-    });
-}
-
-main();
+const response = await client.lightningAddress
+  .sendPayment({ amount: '500000', comment: 'Instant global payments', lnAddress: 'andreneves@zbd.gg' })
+  .catch(async (err) => {
+    if (err instanceof ZbdPayments.APIError) {
+      console.log(err.status); // 400
+      console.log(err.name); // BadRequestError
+      console.log(err.headers); // {server: 'nginx', ...}
+    } else {
+      throw err;
+    }
+  });
 ```
 
 Error codes are as follows:
@@ -182,7 +170,7 @@ The log level can be configured in two ways:
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 const client = new ZbdPayments({
   logLevel: 'debug', // Show all log messages
@@ -210,7 +198,7 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 import pino from 'pino';
 
 const logger = pino();
@@ -245,9 +233,8 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.foo.create({
-  foo: 'my_param',
-  bar: 12,
+client.lightningAddress.sendPayment({
+  // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
 });
@@ -280,7 +267,7 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 import fetch from 'my-fetch';
 
 const client = new ZbdPayments({ fetch });
@@ -291,7 +278,7 @@ const client = new ZbdPayments({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 const client = new ZbdPayments({
   fetchOptions: {
@@ -308,7 +295,7 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
@@ -322,7 +309,7 @@ const client = new ZbdPayments({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 const client = new ZbdPayments({
   fetchOptions: {
@@ -334,7 +321,7 @@ const client = new ZbdPayments({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import ZbdPayments from 'npm:@zbddev/payments-sdk';
+import ZbdPayments from 'npm:@zbdpay/payments-sdk';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
 const client = new ZbdPayments({
@@ -356,7 +343,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/zebedeeio/zbd-payments-typescript-sdk/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/zbdpay/zbd-payments-typescript-sdk/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

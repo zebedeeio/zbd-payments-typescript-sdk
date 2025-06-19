@@ -7,14 +7,15 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^@zbddev/payments-sdk$': '<rootDir>/src/index.ts',
-    '^@zbddev/payments-sdk/(.*)$': '<rootDir>/src/$1',
+    '^@zbdpay/payments-sdk$': '<rootDir>/src/index.ts',
+    '^@zbdpay/payments-sdk/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',
     '<rootDir>/dist/',
     '<rootDir>/deno/',
     '<rootDir>/deno_tests/',
+    '<rootDir>/packages/',
   ],
   testPathIgnorePatterns: ['scripts'],
 };

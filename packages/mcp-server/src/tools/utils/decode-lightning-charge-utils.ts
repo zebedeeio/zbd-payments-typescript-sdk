@@ -1,13 +1,18 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from '@zbdpay/payments-sdk-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 export const metadata: Metadata = {
   resource: 'utils',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v0/decode-invoice',
+  operationId: 'post_v0_decode-invoice',
 };
 
 export const tool: Tool = {
@@ -24,9 +29,10 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  return client.utils.decodeLightningCharge(body);
+  await client.utils.decodeLightningCharge(body);
+  return asTextContentResult('Successful tool call');
 };
 
 export default { metadata, tool, handler };

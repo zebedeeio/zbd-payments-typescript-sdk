@@ -1,13 +1,18 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+import { asTextContentResult } from '@zbdpay/payments-sdk-mcp/tools/types';
+
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
-import ZbdPayments from '@zbddev/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 
 export const metadata: Metadata = {
   resource: 'oauth2',
   operation: 'write',
   tags: [],
+  httpMethod: 'post',
+  httpPath: '/v1/oauth2/token',
+  operationId: 'post_v1_oauth2_token',
 };
 
 export const tool: Tool = {
@@ -19,8 +24,9 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
-  return client.oauth2.refreshToken();
+export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
+  await client.oauth2.refreshToken();
+  return asTextContentResult('Successful tool call');
 };
 
 export default { metadata, tool, handler };

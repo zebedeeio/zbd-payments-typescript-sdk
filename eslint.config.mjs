@@ -10,7 +10,7 @@ export default tseslint.config(
       parserOptions: { sourceType: 'module' },
     },
     files: ['**/*.ts', '**/*.mts', '**/*.cts', '**/*.js', '**/*.mjs', '**/*.cjs'],
-    ignores: ['dist/**'],
+    ignores: ['dist/'],
     plugins: {
       '@typescript-eslint': tseslint.plugin,
       'unused-imports': unusedImports,
@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^@zbddev/payments-sdk(/.*)?',
+              regex: '^@zbdpay/payments-sdk(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

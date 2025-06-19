@@ -1,7 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import ZbdPayments from '@zbddev/payments-sdk';
-import { Tool } from '@modelcontextprotocol/sdk/types.js';
+import { Metadata, Endpoint, HandlerFunction } from './types';
+
+export { Metadata, Endpoint, HandlerFunction };
 
 import create_charge_gamertags from './gamertags/create-charge-gamertags';
 import retrieve_by_gamertag_gamertags from './gamertags/retrieve-by-gamertag-gamertags';
@@ -36,23 +37,6 @@ import retrieve_user_data_oauth2 from './oauth2/retrieve-user-data-oauth2';
 import retrieve_wallet_data_oauth2 from './oauth2/retrieve-wallet-data-oauth2';
 import send_keysend_payments from './keysend-payments/send-keysend-payments';
 import send_email_payments from './email-payments/send-email-payments';
-
-export type HandlerFunction = (
-  client: ZbdPayments,
-  args: Record<string, unknown> | undefined,
-) => Promise<any>;
-
-export type Metadata = {
-  resource: string;
-  operation: 'read' | 'write';
-  tags: string[];
-};
-
-export type Endpoint = {
-  metadata: Metadata;
-  tool: Tool;
-  handler: HandlerFunction;
-};
 
 export const endpoints: Endpoint[] = [];
 
@@ -101,11 +85,7 @@ export type Filter = {
 };
 
 export function query(filters: Filter[], endpoints: Endpoint[]): Endpoint[] {
-  if (filters.length === 0) {
-    return endpoints;
-  }
-
-  const allExcludes = filters.every((filter) => filter.op === 'exclude');
+  const allExcludes = filters.length > 0 && filters.every((filter) => filter.op === 'exclude');
   const unmatchedFilters = new Set(filters);
 
   const filtered = endpoints.filter((endpoint: Endpoint) => {
@@ -122,9 +102,10 @@ export function query(filters: Filter[], endpoints: Endpoint[]): Endpoint[] {
   });
 
   // Check if any filters didn't match
-  if (unmatchedFilters.size > 0) {
+  const unmatched = Array.from(unmatchedFilters).filter((f) => f.type === 'tool' || f.type === 'resource');
+  if (unmatched.length > 0) {
     throw new Error(
-      `The following filters did not match any endpoints: ${[...unmatchedFilters]
+      `The following filters did not match any endpoints: ${unmatched
         .map((f) => `${f.type}=${f.value}`)
         .join(', ')}`,
     );
