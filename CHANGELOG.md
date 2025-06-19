@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.8.0 (2025-06-19)
+
+Full Changelog: [v1.7.0...v1.8.0](https://github.com/zbdpay/zbd-payments-typescript-sdk/compare/v1.7.0...v1.8.0)
+
+### Features
+
+* **api:** update via SDK Studio ([6345719](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/63457195789091f422179747c1aa9ba4577164fb))
+* **client:** add support for endpoint-specific base URLs ([86b85bf](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/86b85bf880e0237002e55b9e0647c9baab74c31c))
+* **mcp:** implement support for binary responses ([6b7e258](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/6b7e25809fd777bdbb6982755c5d04bb9936778e))
+* **mcp:** include http information in tools ([1cddbac](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/1cddbacffcbf383af14157ce6a99d67a93b6a1d0))
+* **mcp:** set X-Stainless-MCP header ([f5bb5f6](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/f5bb5f6cce3d27963841f67494489d62a26be448))
+* **mcp:** support dynamically discovering and invoking tools for APIs with many endpoints ([fea7200](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/fea7200dc2f8e50b1e68e75474623b360d94232c))
+
+
+### Bug Fixes
+
+* **client:** always overwrite when merging headers ([012aa11](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/012aa114582ed20ffe43572f52e7f238e2d54757))
+* compat with more runtimes ([f1653e5](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/f1653e5c8e21796415ade613c845581a7e570280))
+* **mcp:** explicitly include zod and zod-to-json-schema in package.json ([c98c7a8](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/c98c7a8c3720edd3e578218d8e35b45a76a2ff9c))
+* **mcp:** fix cursor schema transformation issue with recursive references ([1279e21](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/1279e2116682e54655af9120ae359c41b9361e8e))
+* **mcp:** include description in dynamic tool search ([73af395](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/73af395e67a0fcc9a2fd99f7b14cb5b9cd92acb5))
+* publish script — handle NPM errors correctly ([447865a](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/447865a0ec42c763ac883a7233a7df610ed7d562))
+
+
+### Chores
+
+* adjust eslint.config.mjs ignore pattern ([1188bed](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/1188bedaed64835456668b1aed0461637c97f51e))
+* avoid type error in certain environments ([edbca04](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/edbca04b641bd9b63590de9ce25de4de7876b430))
+* **ci:** enable for pull requests ([a8235a6](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/a8235a618b6ee7f400afb669d67eae52cce8ecd8))
+* **client:** refactor imports ([37ab831](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/37ab8314fa04121d73cf1dc7999a2a95aa81068f))
+* **deps:** bump eslint-plugin-prettier ([7da8fec](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/7da8fececee68a45289cccb2e1319dd08c94fa4c))
+* **docs:** grammar improvements ([b72d590](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/b72d59009644c6dbed5c64ec9790b0cb54a08c09))
+* **docs:** use top-level-await in example snippets ([2ed931a](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/2ed931a3ecf14764c16d1c9f04a7e7e82f6f43c8))
+* improve publish-npm script --latest tag logic ([1f05cfc](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/1f05cfc946dec153d657858a91490d068ab61a04))
+* **internal:** add pure annotations, make base APIResource abstract ([1e17479](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/1e17479800be8344b214d8392c0111e5a918cb61))
+* **internal:** codegen related update ([c038ae9](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/c038ae98ad74fefbc3804edc49d7933307410fff))
+* **internal:** codegen related update ([1e1bd61](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/1e1bd614599ef6328a2aef3da4840f8f04c69505))
+* **internal:** fix readablestream types in node 20 ([ece45da](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/ece45da16b77607de37a37147378971573638182))
+* **internal:** update jest config ([62f8846](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/62f8846db8bd825d43fd056c9dc44561477ab7cb))
+* **mcp:** provides high-level initMcpServer function and exports known clients ([834f40e](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/834f40e760ee1128435f43e3951722d6bf2f0a74))
+* **mcp:** remove duplicate assignment ([52d68a8](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/52d68a84ae24a9657e2d35406587e7a849ca4c13))
+* **package:** remove engines ([25b4721](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/25b47218f74ad5118c1b9e737bc9a982ed50e8e5))
+* **readme:** update badges ([c5c7320](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/c5c73208e4a2899d9dbff4de792014a4673e3e62))
+* **readme:** use better example snippet for undocumented params ([2cd75d6](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/2cd75d6516f83b94ae9bda001807a0abd8ef46d0))
+* **tests:** use node 22 for CI tests ([6bd442e](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/6bd442eb1c936762d07e94b7d1c842a9f639e3e9))
+
 ## 1.7.0 (2025-05-10)
 
 Full Changelog: [v1.6.2...v1.7.0](https://github.com/zebedeeio/zbd-payments-typescript-sdk/compare/v1.6.2...v1.7.0)
