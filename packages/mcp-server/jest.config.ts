@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^@zbddev/payments-sdk-mcp$': '<rootDir>/src/index.ts',
-    '^@zbddev/payments-sdk-mcp/(.*)$': '<rootDir>/src/$1',
+    '^@zbdpay/payments-sdk-mcp$': '<rootDir>/src/index.ts',
+    '^@zbdpay/payments-sdk-mcp/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   testPathIgnorePatterns: ['scripts'],

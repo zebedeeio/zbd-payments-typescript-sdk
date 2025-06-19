@@ -4,8 +4,8 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { Endpoint, endpoints, HandlerFunction, query } from './tools';
 import { CallToolRequestSchema, ListToolsRequestSchema, Tool } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from '@zbddev/payments-sdk';
-import ZbdPayments from '@zbddev/payments-sdk';
+import { ClientOptions } from '@zbdpay/payments-sdk';
+import ZbdPayments from '@zbdpay/payments-sdk';
 import {
   applyCompatibilityTransformations,
   ClientCapabilities,
@@ -19,13 +19,13 @@ import { McpOptions } from './options';
 export { McpOptions } from './options';
 export { ClientType } from './compat';
 export { Filter } from './tools';
-export { ClientOptions } from '@zbddev/payments-sdk';
+export { ClientOptions } from '@zbdpay/payments-sdk';
 export { endpoints } from './tools';
 
 // Create server instance
 export const server = new McpServer(
   {
-    name: 'zbddev_payments_sdk_api',
+    name: 'zbdpay_payments_sdk_api',
     version: '1.7.0',
   },
   {

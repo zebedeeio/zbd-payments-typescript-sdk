@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "@zbddev/payments-sdk/*": ["src/*"],
-      "@zbddev/payments-sdk": ["src/index.ts"]
+      "@zbdpay/payments-sdk/*": ["src/*"],
+      "@zbdpay/payments-sdk": ["src/index.ts"]
     },
     "noEmit": true,
 
