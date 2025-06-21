@@ -45,7 +45,10 @@ export class Vouchers extends APIResource {
    * });
    * ```
    */
-  create(body: VoucherCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<VoucherCreateResponse> {
+  create(
+    body: VoucherCreateParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VoucherCreateResponse> {
     return this._client.post('/v1/create-voucher', {
       body,
       ...options,
@@ -76,7 +79,10 @@ export class Vouchers extends APIResource {
    * await client.vouchers.redeem({ code: 'string' });
    * ```
    */
-  redeem(body: VoucherRedeemParams | null | undefined = {}, options?: RequestOptions): APIPromise<VoucherRedeemResponse> {
+  redeem(
+    body: VoucherRedeemParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VoucherRedeemResponse> {
     return this._client.post('/v0/redeem-voucher', {
       body,
       ...options,
@@ -92,7 +98,10 @@ export class Vouchers extends APIResource {
    * await client.vouchers.revoke({ code: 'string' });
    * ```
    */
-  revoke(body: VoucherRevokeParams | null | undefined = {}, options?: RequestOptions): APIPromise<VoucherRevokeResponse> {
+  revoke(
+    body: VoucherRevokeParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<VoucherRevokeResponse> {
     return this._client.post('/v0/revoke-voucher', {
       body,
       ...options,

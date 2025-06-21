@@ -41,7 +41,10 @@ export class KeysendPayments extends APIResource {
    * });
    * ```
    */
-  send(body: KeysendPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<KeysendPaymentSendResponse> {
+  send(
+    body: KeysendPaymentSendParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<KeysendPaymentSendResponse> {
     return this._client.post('/v0/keysend-payment', {
       body,
       ...options,

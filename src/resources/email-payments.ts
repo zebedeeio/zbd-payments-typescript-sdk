@@ -33,7 +33,10 @@ export class EmailPayments extends APIResource {
    * });
    * ```
    */
-  send(body: EmailPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<EmailPaymentSendResponse> {
+  send(
+    body: EmailPaymentSendParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<EmailPaymentSendResponse> {
     return this._client.post('/v0/email/send-payment', {
       body,
       ...options,

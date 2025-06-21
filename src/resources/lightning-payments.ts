@@ -56,7 +56,10 @@ export class LightningPayments extends APIResource {
    * });
    * ```
    */
-  send(body: LightningPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<LightningPaymentSendResponse> {
+  send(
+    body: LightningPaymentSendParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<LightningPaymentSendResponse> {
     return this._client.post('/v0/payments', {
       body,
       ...options,

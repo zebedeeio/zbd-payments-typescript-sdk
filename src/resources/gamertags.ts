@@ -105,7 +105,10 @@ export class Gamertags extends APIResource {
    * await client.gamertags.retrieveByGamertag('gamertag');
    * ```
    */
-  retrieveByGamertag(gamertag: string, options?: RequestOptions): APIPromise<GamertagRetrieveByGamertagResponse> {
+  retrieveByGamertag(
+    gamertag: string,
+    options?: RequestOptions,
+  ): APIPromise<GamertagRetrieveByGamertagResponse> {
     return this._client.get(path`/v0/user-id/gamertag/${gamertag}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
