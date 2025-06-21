@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.8.2 (2025-06-21)
+
+Full Changelog: [v1.8.1...v1.8.2](https://github.com/zbdpay/zbd-payments-typescript-sdk/compare/v1.8.1...v1.8.2)
+
+### Bug Fixes
+
+* **client:** explicitly copy fetch in withOptions ([6e76e41](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/6e76e41c37aef396575f77d3728e66e4ee9eac26))
+
+
+### Chores
+
+* fixes ([de1d7ce](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/de1d7ce48192cc32ba225ed26b90d4100c449d73))
+* more fixes ([49966c3](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/49966c32639873d06fe64edebabbc4f367f74da9))
+
 ## 1.8.1 (2025-06-19)
 
 Full Changelog: [v1.8.0...v1.8.1](https://github.com/zbdpay/zbd-payments-typescript-sdk/compare/v1.8.0...v1.8.1)
