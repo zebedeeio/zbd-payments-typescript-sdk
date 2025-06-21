@@ -6,6 +6,33 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface VoucherCreateResponse {
+  id: string;
+  code: string;
+  amount: string;
+  description?: string;
+}
+
+export interface VoucherRetrieveResponse {
+  id: string;
+  code: string;
+  amount: string;
+  description?: string;
+  status: string;
+  createdAt: string;
+}
+
+export interface VoucherRedeemResponse {
+  success: boolean;
+  message: string;
+  amount?: string;
+}
+
+export interface VoucherRevokeResponse {
+  success: boolean;
+  message: string;
+}
+
 export class Vouchers extends APIResource {
   /**
    * Create Voucher
@@ -18,7 +45,7 @@ export class Vouchers extends APIResource {
    * });
    * ```
    */
-  create(body: VoucherCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  create(body: VoucherCreateParams | null | undefined = {}, options?: RequestOptions): APIPromise<VoucherCreateResponse> {
     return this._client.post('/v1/create-voucher', {
       body,
       ...options,
@@ -34,7 +61,7 @@ export class Vouchers extends APIResource {
    * await client.vouchers.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<VoucherRetrieveResponse> {
     return this._client.get(path`/v0/vouchers/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -49,7 +76,7 @@ export class Vouchers extends APIResource {
    * await client.vouchers.redeem({ code: 'string' });
    * ```
    */
-  redeem(body: VoucherRedeemParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  redeem(body: VoucherRedeemParams | null | undefined = {}, options?: RequestOptions): APIPromise<VoucherRedeemResponse> {
     return this._client.post('/v0/redeem-voucher', {
       body,
       ...options,
@@ -65,7 +92,7 @@ export class Vouchers extends APIResource {
    * await client.vouchers.revoke({ code: 'string' });
    * ```
    */
-  revoke(body: VoucherRevokeParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  revoke(body: VoucherRevokeParams | null | undefined = {}, options?: RequestOptions): APIPromise<VoucherRevokeResponse> {
     return this._client.post('/v0/revoke-voucher', {
       body,
       ...options,

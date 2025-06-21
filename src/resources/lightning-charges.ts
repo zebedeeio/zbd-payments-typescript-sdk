@@ -6,6 +6,31 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface LightningChargeCreateResponse {
+  id: string;
+  invoice: {
+    request: string;
+    expiresAt: string;
+  };
+  amount: string;
+  description: string;
+  status: string;
+  createdAt: string;
+}
+
+export interface LightningChargeRetrieveResponse {
+  id: string;
+  invoice: {
+    request: string;
+    expiresAt: string;
+  };
+  amount: string;
+  description: string;
+  status: string;
+  createdAt: string;
+  settledAt?: string;
+}
+
 export class LightningCharges extends APIResource {
   /**
    * Start receiving instant Bitcoin payments through the ZBD API.
@@ -24,7 +49,7 @@ export class LightningCharges extends APIResource {
   create(
     body: LightningChargeCreateParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<LightningChargeCreateResponse> {
     return this._client.post('/v0/charges', {
       body,
       ...options,
@@ -40,7 +65,7 @@ export class LightningCharges extends APIResource {
    * await client.lightningCharges.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<LightningChargeRetrieveResponse> {
     return this._client.get(path`/v0/charges/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),

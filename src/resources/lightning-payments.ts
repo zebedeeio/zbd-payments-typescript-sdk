@@ -6,6 +6,26 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface LightningPaymentRetrieveResponse {
+  id: string;
+  amount: string;
+  description: string;
+  status: string;
+  createdAt: string;
+  settledAt?: string;
+  invoice: string;
+}
+
+export interface LightningPaymentSendResponse {
+  id: string;
+  amount: string;
+  description: string;
+  status: string;
+  createdAt: string;
+  invoice: string;
+  preimage?: string;
+}
+
 export class LightningPayments extends APIResource {
   /**
    * Retrieve all data about a single Payment.
@@ -15,7 +35,7 @@ export class LightningPayments extends APIResource {
    * await client.lightningPayments.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<LightningPaymentRetrieveResponse> {
     return this._client.get(path`/v0/payments/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -36,7 +56,7 @@ export class LightningPayments extends APIResource {
    * });
    * ```
    */
-  send(body: LightningPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  send(body: LightningPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<LightningPaymentSendResponse> {
     return this._client.post('/v0/payments', {
       body,
       ...options,

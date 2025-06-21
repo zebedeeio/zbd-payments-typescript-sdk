@@ -6,6 +6,48 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface UtilCheckIPSupportResponse {
+  isSupported: boolean;
+  ipAddress: string;
+  region: string;
+  country?: string;
+  message?: string;
+}
+
+export interface UtilDecodeLightningChargeResponse {
+  amount: string | null;
+  timestamp: number;
+  expiresAt: number | null;
+  description: string;
+  paymentHash: string;
+  destination: string;
+  numSatoshis: string;
+  numMilliSatoshis: string;
+  routeHints: Array<{
+    hopHints: Array<{
+      nodeId: string;
+      chanId: string;
+      feeBaseMsat: number;
+      feeProportionalMillionths: number;
+      cltvExpiryDelta: number;
+    }>;
+  }>;
+  fallbackAddr?: string;
+  cltvExpiry: number;
+}
+
+export interface UtilListProdIPsResponse {
+  ips: string[];
+  ipRanges: string[];
+  updatedAt: string;
+}
+
+export interface UtilRetrieveBtcUsdResponse {
+  btcUsdPrice: string;
+  timestamp: string;
+  source: string;
+}
+
 export class Utils extends APIResource {
   /**
    * Verify if a user is coming from a supported region.
@@ -15,7 +57,7 @@ export class Utils extends APIResource {
    * await client.utils.checkIPSupport('ip');
    * ```
    */
-  checkIPSupport(ip: string, options?: RequestOptions): APIPromise<void> {
+  checkIPSupport(ip: string, options?: RequestOptions): APIPromise<UtilCheckIPSupportResponse> {
     return this._client.get(path`/v0/is-supported-region/${ip}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -35,7 +77,7 @@ export class Utils extends APIResource {
   decodeLightningCharge(
     body: UtilDecodeLightningChargeParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<UtilDecodeLightningChargeResponse> {
     return this._client.post('/v0/decode-invoice', {
       body,
       ...options,
@@ -51,7 +93,7 @@ export class Utils extends APIResource {
    * await client.utils.listProdIPs();
    * ```
    */
-  listProdIPs(options?: RequestOptions): APIPromise<void> {
+  listProdIPs(options?: RequestOptions): APIPromise<UtilListProdIPsResponse> {
     return this._client.get('/v0/prod-ips', {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -66,7 +108,7 @@ export class Utils extends APIResource {
    * await client.utils.retrieveBtcUsd();
    * ```
    */
-  retrieveBtcUsd(options?: RequestOptions): APIPromise<void> {
+  retrieveBtcUsd(options?: RequestOptions): APIPromise<UtilRetrieveBtcUsdResponse> {
     return this._client.get('/v0/btcusd', {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -82,5 +124,11 @@ export interface UtilDecodeLightningChargeParams {
 }
 
 export declare namespace Utils {
-  export { type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams };
+  export {
+    type UtilCheckIPSupportResponse as UtilCheckIPSupportResponse,
+    type UtilDecodeLightningChargeResponse as UtilDecodeLightningChargeResponse,
+    type UtilListProdIPsResponse as UtilListProdIPsResponse,
+    type UtilRetrieveBtcUsdResponse as UtilRetrieveBtcUsdResponse,
+    type UtilDecodeLightningChargeParams as UtilDecodeLightningChargeParams,
+  };
 }

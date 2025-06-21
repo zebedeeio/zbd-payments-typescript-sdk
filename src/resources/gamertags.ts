@@ -6,6 +6,70 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface GamertagCreateChargeResponse {
+  id: string;
+  unit: string;
+  amount: string;
+  createdAt: string;
+  expiresAt: string;
+  description: string;
+  status: string;
+  invoice: {
+    request: string;
+    uri: string;
+  };
+  onchain: string;
+  internalId?: string;
+  callbackUrl?: string;
+  gamertag: string;
+}
+
+export interface GamertagRetrieveByGamertagResponse {
+  gamertag: string;
+  id: string;
+  createdAt: string;
+  isVerified: boolean;
+  lightningAddress: string;
+  nostrPubkey?: string;
+}
+
+export interface GamertagRetrieveByZbdIDResponse {
+  userId: string;
+  gamertag: string;
+  isVerified: boolean;
+  lightningAddress: string;
+  createdAt: string;
+}
+
+export interface GamertagRetrievePaymentResponse {
+  id: string;
+  fee: string;
+  unit: string;
+  amount: string;
+  invoice: string;
+  preimage: string;
+  processedAt: string;
+  confirmedAt: string;
+  status: string;
+  description: string;
+  gamertag: string;
+  internalId?: string;
+}
+
+export interface GamertagSendPaymentResponse {
+  id: string;
+  fee: string;
+  unit: string;
+  amount: string;
+  invoice: string;
+  preimage: string;
+  processedAt: string;
+  confirmedAt: string;
+  status: string;
+  description: string;
+  gamertag: string;
+}
+
 export class Gamertags extends APIResource {
   /**
    * Generate a payment request for a ZBD User.
@@ -25,7 +89,7 @@ export class Gamertags extends APIResource {
   createCharge(
     body: GamertagCreateChargeParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<GamertagCreateChargeResponse> {
     return this._client.post('/v0/gamertag/charges', {
       body,
       ...options,
@@ -41,7 +105,7 @@ export class Gamertags extends APIResource {
    * await client.gamertags.retrieveByGamertag('gamertag');
    * ```
    */
-  retrieveByGamertag(gamertag: string, options?: RequestOptions): APIPromise<void> {
+  retrieveByGamertag(gamertag: string, options?: RequestOptions): APIPromise<GamertagRetrieveByGamertagResponse> {
     return this._client.get(path`/v0/user-id/gamertag/${gamertag}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -56,7 +120,7 @@ export class Gamertags extends APIResource {
    * await client.gamertags.retrieveByZbdID('id');
    * ```
    */
-  retrieveByZbdID(id: string, options?: RequestOptions): APIPromise<void> {
+  retrieveByZbdID(id: string, options?: RequestOptions): APIPromise<GamertagRetrieveByZbdIDResponse> {
     return this._client.get(path`/v0/gamertag/user-id/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -71,7 +135,7 @@ export class Gamertags extends APIResource {
    * await client.gamertags.retrievePayment('id');
    * ```
    */
-  retrievePayment(id: string, options?: RequestOptions): APIPromise<void> {
+  retrievePayment(id: string, options?: RequestOptions): APIPromise<GamertagRetrievePaymentResponse> {
     return this._client.get(path`/v0/gamertag/transaction/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -93,7 +157,7 @@ export class Gamertags extends APIResource {
   sendPayment(
     body: GamertagSendPaymentParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<GamertagSendPaymentResponse> {
     return this._client.post('/v0/gamertag/send-payment', {
       body,
       ...options,
@@ -153,6 +217,11 @@ export interface GamertagSendPaymentParams {
 
 export declare namespace Gamertags {
   export {
+    type GamertagCreateChargeResponse as GamertagCreateChargeResponse,
+    type GamertagRetrieveByGamertagResponse as GamertagRetrieveByGamertagResponse,
+    type GamertagRetrieveByZbdIDResponse as GamertagRetrieveByZbdIDResponse,
+    type GamertagRetrievePaymentResponse as GamertagRetrievePaymentResponse,
+    type GamertagSendPaymentResponse as GamertagSendPaymentResponse,
     type GamertagCreateChargeParams as GamertagCreateChargeParams,
     type GamertagSendPaymentParams as GamertagSendPaymentParams,
   };

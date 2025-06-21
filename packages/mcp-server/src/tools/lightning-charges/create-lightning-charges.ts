@@ -47,8 +47,8 @@ export const tool: Tool = {
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  await client.lightningCharges.create(body);
-  return asTextContentResult('Successful tool call');
+  const result = await client.lightningCharges.create(body);
+  return asTextContentResult(result);
 };
 
 export default { metadata, tool, handler };

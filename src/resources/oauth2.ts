@@ -5,11 +5,43 @@ import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
+export interface Oauth2CreateAuthorizationURLResponse {
+  authorizationUrl: string;
+  state: string;
+  expiresAt: string;
+}
+
+export interface Oauth2RefreshTokenResponse {
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
+  expiresIn: number;
+  scope: string;
+}
+
+export interface Oauth2RetrieveUserDataResponse {
+  id: string;
+  email: string;
+  gamertag: string;
+  isVerified: boolean;
+  lightningAddress: string;
+  createdAt: string;
+  image?: string;
+  publicBio?: string;
+  twitterHandle?: string;
+}
+
+export interface Oauth2RetrieveWalletDataResponse {
+  unit: string;
+  balance: string;
+  id: string;
+}
+
 export class Oauth2 extends APIResource {
   /**
    * Create an authorization URL for ZBD Login.
    */
-  createAuthorizationURL(options?: RequestOptions): APIPromise<void> {
+  createAuthorizationURL(options?: RequestOptions): APIPromise<Oauth2CreateAuthorizationURLResponse> {
     return this._client.get('/v1/oauth2/authorize', {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -19,7 +51,7 @@ export class Oauth2 extends APIResource {
   /**
    * Generate a new accessToken for a ZBD Login user.
    */
-  refreshToken(options?: RequestOptions): APIPromise<void> {
+  refreshToken(options?: RequestOptions): APIPromise<Oauth2RefreshTokenResponse> {
     return this._client.post('/v1/oauth2/token', {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -32,7 +64,7 @@ export class Oauth2 extends APIResource {
   retrieveUserData(
     params: Oauth2RetrieveUserDataParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<Oauth2RetrieveUserDataResponse> {
     const { usertoken } = params ?? {};
     return this._client.get('/v1/oauth2/user', {
       ...options,
@@ -49,7 +81,7 @@ export class Oauth2 extends APIResource {
   retrieveWalletData(
     params: Oauth2RetrieveWalletDataParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<Oauth2RetrieveWalletDataResponse> {
     const { usertoken } = params ?? {};
     return this._client.get('/v1/oauth2/wallet', {
       ...options,
@@ -77,6 +109,10 @@ export interface Oauth2RetrieveWalletDataParams {
 
 export declare namespace Oauth2 {
   export {
+    type Oauth2CreateAuthorizationURLResponse as Oauth2CreateAuthorizationURLResponse,
+    type Oauth2RefreshTokenResponse as Oauth2RefreshTokenResponse,
+    type Oauth2RetrieveUserDataResponse as Oauth2RetrieveUserDataResponse,
+    type Oauth2RetrieveWalletDataResponse as Oauth2RetrieveWalletDataResponse,
     type Oauth2RetrieveUserDataParams as Oauth2RetrieveUserDataParams,
     type Oauth2RetrieveWalletDataParams as Oauth2RetrieveWalletDataParams,
   };

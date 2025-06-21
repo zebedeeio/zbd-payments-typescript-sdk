@@ -27,7 +27,7 @@
     "fix": "eslint --fix --ext ts,js ."
   },
   "dependencies": {
-    "@zbdpay/payments-sdk": "file:../../dist/",
+    "@zbdpay/payments-sdk": "file:../../",
     "@modelcontextprotocol/sdk": "^1.11.5",
     "yargs": "^17.7.2",
     "@cloudflare/cabidela": "^0.2.4",

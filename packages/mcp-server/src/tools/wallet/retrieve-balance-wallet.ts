@@ -25,8 +25,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
-  await client.wallet.retrieveBalance();
-  return asTextContentResult('Successful tool call');
+  const result = await client.wallet.retrieveBalance();
+  return asTextContentResult(result);
 };
 
 export default { metadata, tool, handler };

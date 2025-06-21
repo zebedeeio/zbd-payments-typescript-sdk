@@ -6,6 +6,44 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface WithdrawalRequestCreateResponse {
+  id: string;
+  unit: string;
+  amount: string;
+  createdAt: string;
+  expiresAt: string;
+  description: string;
+  status: string;
+  invoice: {
+    request: string;
+    uri: string;
+  };
+  onchain: string;
+  internalId?: string;
+  callbackUrl?: string;
+}
+
+export interface WithdrawalRequestRetrieveResponse {
+  id: string;
+  unit: string;
+  amount: string;
+  createdAt: string;
+  expiresAt: string;
+  description: string;
+  status: string;
+  processedAt?: string;
+  confirmedAt?: string;
+  invoice: {
+    request: string;
+    uri: string;
+  };
+  onchain: string;
+  internalId?: string;
+  callbackUrl?: string;
+  fee?: string;
+  preimage?: string;
+}
+
 export class WithdrawalRequests extends APIResource {
   /**
    * Start creating Bitcoin voucher QR codes.
@@ -24,7 +62,7 @@ export class WithdrawalRequests extends APIResource {
   create(
     body: WithdrawalRequestCreateParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<WithdrawalRequestCreateResponse> {
     return this._client.post('/v0/withdrawal-requests', {
       body,
       ...options,
@@ -40,7 +78,7 @@ export class WithdrawalRequests extends APIResource {
    * await client.withdrawalRequests.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<WithdrawalRequestRetrieveResponse> {
     return this._client.get(path`/v0/withdrawal-requests/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -76,5 +114,9 @@ export interface WithdrawalRequestCreateParams {
 }
 
 export declare namespace WithdrawalRequests {
-  export { type WithdrawalRequestCreateParams as WithdrawalRequestCreateParams };
+  export {
+    type WithdrawalRequestCreateResponse as WithdrawalRequestCreateResponse,
+    type WithdrawalRequestRetrieveResponse as WithdrawalRequestRetrieveResponse,
+    type WithdrawalRequestCreateParams as WithdrawalRequestCreateParams,
+  };
 }

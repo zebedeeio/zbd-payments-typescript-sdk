@@ -6,6 +6,52 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface LightningAddressCreateChargeResponse {
+  id: string;
+  unit: string;
+  amount: string;
+  createdAt: string;
+  expiresAt: string;
+  description: string;
+  status: string;
+  invoice: {
+    request: string;
+    uri: string;
+  };
+  onchain: string;
+  internalId?: string;
+  callbackUrl?: string;
+}
+
+export interface LightningAddressSendPaymentResponse {
+  id: string;
+  fee: string;
+  unit: string;
+  amount: string;
+  invoice: string;
+  preimage: string;
+  processedAt: string;
+  confirmedAt: string;
+  status: string;
+  comment?: string;
+  internalId?: string;
+  callbackUrl?: string;
+}
+
+export interface LightningAddressValidateResponse {
+  valid: boolean;
+  lnaddress: string;
+  data?: {
+    callback: string;
+    minSendable: number;
+    maxSendable: number;
+    metadata: string;
+    tag: string;
+    allowsNostr?: boolean;
+    nostrPubkey?: string;
+  };
+}
+
 export class LightningAddress extends APIResource {
   /**
    * Generate a payment request for a Lightning Address.
@@ -22,7 +68,7 @@ export class LightningAddress extends APIResource {
   createCharge(
     body: LightningAddressCreateChargeParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<LightningAddressCreateChargeResponse> {
     return this._client.post('/v0/ln-address/fetch-charge', {
       body,
       ...options,
@@ -47,7 +93,7 @@ export class LightningAddress extends APIResource {
   sendPayment(
     body: LightningAddressSendPaymentParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<LightningAddressSendPaymentResponse> {
     return this._client.post('/v0/ln-address/send-payment', {
       body,
       ...options,
@@ -63,7 +109,7 @@ export class LightningAddress extends APIResource {
    * await client.lightningAddress.validate('address');
    * ```
    */
-  validate(address: string, options?: RequestOptions): APIPromise<void> {
+  validate(address: string, options?: RequestOptions): APIPromise<LightningAddressValidateResponse> {
     return this._client.get(path`/v0/ln-address/validate/${address}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -117,6 +163,9 @@ export interface LightningAddressSendPaymentParams {
 
 export declare namespace LightningAddress {
   export {
+    type LightningAddressCreateChargeResponse as LightningAddressCreateChargeResponse,
+    type LightningAddressSendPaymentResponse as LightningAddressSendPaymentResponse,
+    type LightningAddressValidateResponse as LightningAddressValidateResponse,
     type LightningAddressCreateChargeParams as LightningAddressCreateChargeParams,
     type LightningAddressSendPaymentParams as LightningAddressSendPaymentParams,
   };

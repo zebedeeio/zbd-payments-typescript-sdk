@@ -6,6 +6,70 @@ import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+export interface LightningStaticChargeCreateResponse {
+  id: string;
+  unit: string;
+  slots: number;
+  minAmount: string;
+  maxAmount: string;
+  createdAt: string;
+  expiresAt: string;
+  request: string;
+  onchain: string;
+  invoice: {
+    request: string;
+    uri: string;
+  };
+  allowedSlots: number;
+  usedSlots: number;
+  status: string;
+  successMessage: string;
+  description: string;
+  identifier?: string;
+  callbackUrl?: string;
+  internalId?: string;
+}
+
+export interface LightningStaticChargeRetrieveResponse {
+  id: string;
+  unit: string;
+  slots: number;
+  minAmount: string;
+  maxAmount: string;
+  createdAt: string;
+  expiresAt: string;
+  request: string;
+  onchain: string;
+  invoice: {
+    request: string;
+    uri: string;
+  };
+  allowedSlots: number;
+  usedSlots: number;
+  status: string;
+  successMessage: string;
+  description: string;
+  identifier?: string;
+  callbackUrl?: string;
+  internalId?: string;
+}
+
+export interface LightningStaticChargeUpdateResponse {
+  success: boolean;
+  message: string;
+  data: {
+    id: string;
+    allowedSlots?: number;
+    callbackUrl?: string;
+    description?: string;
+    internalId?: string;
+    maxAmount?: string;
+    minAmount?: string;
+    successMessage?: string;
+    updatedAt: string;
+  };
+}
+
 export class LightningStaticCharges extends APIResource {
   /**
    * Start accepting payments on Lightning with Static QR codes.
@@ -27,7 +91,7 @@ export class LightningStaticCharges extends APIResource {
   create(
     body: LightningStaticChargeCreateParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<LightningStaticChargeCreateResponse> {
     return this._client.post('/v0/static-charges', {
       body,
       ...options,
@@ -43,7 +107,7 @@ export class LightningStaticCharges extends APIResource {
    * await client.lightningStaticCharges.retrieve('id');
    * ```
    */
-  retrieve(id: string, options?: RequestOptions): APIPromise<void> {
+  retrieve(id: string, options?: RequestOptions): APIPromise<LightningStaticChargeRetrieveResponse> {
     return this._client.get(path`/v0/static-charges/${id}`, {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
@@ -70,7 +134,7 @@ export class LightningStaticCharges extends APIResource {
     id: string,
     body: LightningStaticChargeUpdateParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<LightningStaticChargeUpdateResponse> {
     return this._client.patch(path`/v0/static-charges/${id}`, {
       body,
       ...options,
@@ -160,6 +224,9 @@ export interface LightningStaticChargeUpdateParams {
 
 export declare namespace LightningStaticCharges {
   export {
+    type LightningStaticChargeCreateResponse as LightningStaticChargeCreateResponse,
+    type LightningStaticChargeRetrieveResponse as LightningStaticChargeRetrieveResponse,
+    type LightningStaticChargeUpdateResponse as LightningStaticChargeUpdateResponse,
     type LightningStaticChargeCreateParams as LightningStaticChargeCreateParams,
     type LightningStaticChargeUpdateParams as LightningStaticChargeUpdateParams,
   };

@@ -5,6 +5,21 @@ import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
+export interface EmailPaymentSendResponse {
+  id: string;
+  fee: string;
+  unit: string;
+  amount: string;
+  invoice: string;
+  preimage: string;
+  processedAt: string;
+  confirmedAt: string;
+  status: string;
+  comment: string;
+  email: string;
+  receiverUserId?: string;
+}
+
 export class EmailPayments extends APIResource {
   /**
    * Send instant Bitcoin payments to any email.
@@ -18,7 +33,7 @@ export class EmailPayments extends APIResource {
    * });
    * ```
    */
-  send(body: EmailPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  send(body: EmailPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<EmailPaymentSendResponse> {
     return this._client.post('/v0/email/send-payment', {
       body,
       ...options,
@@ -45,5 +60,8 @@ export interface EmailPaymentSendParams {
 }
 
 export declare namespace EmailPayments {
-  export { type EmailPaymentSendParams as EmailPaymentSendParams };
+  export {
+    type EmailPaymentSendResponse as EmailPaymentSendResponse,
+    type EmailPaymentSendParams as EmailPaymentSendParams,
+  };
 }

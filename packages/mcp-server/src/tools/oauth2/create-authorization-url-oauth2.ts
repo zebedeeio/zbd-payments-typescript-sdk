@@ -25,8 +25,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
-  await client.oauth2.createAuthorizationURL();
-  return asTextContentResult('Successful tool call');
+  const result = await client.oauth2.createAuthorizationURL();
+  return asTextContentResult(result);
 };
 
 export default { metadata, tool, handler };

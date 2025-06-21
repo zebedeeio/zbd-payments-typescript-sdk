@@ -5,6 +5,18 @@ import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
+export interface InternalTransferInitiateResponse {
+  id: string;
+  amount: string;
+  unit: string;
+  status: string;
+  processedAt: string;
+  fee: string;
+  senderWalletId: string;
+  receiverWalletId: string;
+  internalId?: string;
+}
+
 export class InternalTransfer extends APIResource {
   /**
    * Performs a transfer of funds between two Projects.
@@ -20,7 +32,7 @@ export class InternalTransfer extends APIResource {
   initiate(
     body: InternalTransferInitiateParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<void> {
+  ): APIPromise<InternalTransferInitiateResponse> {
     return this._client.post('/v0/internal-transfer', {
       body,
       ...options,
@@ -42,5 +54,8 @@ export interface InternalTransferInitiateParams {
 }
 
 export declare namespace InternalTransfer {
-  export { type InternalTransferInitiateParams as InternalTransferInitiateParams };
+  export {
+    type InternalTransferInitiateResponse as InternalTransferInitiateResponse,
+    type InternalTransferInitiateParams as InternalTransferInitiateParams,
+  };
 }

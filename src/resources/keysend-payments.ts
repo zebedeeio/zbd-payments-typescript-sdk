@@ -5,6 +5,26 @@ import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
+export interface KeysendPaymentSendResponse {
+  id: string;
+  fee: string;
+  unit: string;
+  amount: string;
+  invoice: string;
+  preimage: string;
+  processedAt: string;
+  confirmedAt: string;
+  status: string;
+  pubkey: string;
+  keysendId: string;
+  metadata?: unknown;
+  tlvRecords?: Array<{
+    type: number;
+    value: string;
+  }>;
+  callbackUrl?: string;
+}
+
 export class KeysendPayments extends APIResource {
   /**
    * Start sending Keysend payments on the Lightning Network.
@@ -21,7 +41,7 @@ export class KeysendPayments extends APIResource {
    * });
    * ```
    */
-  send(body: KeysendPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<void> {
+  send(body: KeysendPaymentSendParams | null | undefined = {}, options?: RequestOptions): APIPromise<KeysendPaymentSendResponse> {
     return this._client.post('/v0/keysend-payment', {
       body,
       ...options,
@@ -65,5 +85,8 @@ export interface KeysendPaymentSendParams {
 }
 
 export declare namespace KeysendPayments {
-  export { type KeysendPaymentSendParams as KeysendPaymentSendParams };
+  export {
+    type KeysendPaymentSendResponse as KeysendPaymentSendResponse,
+    type KeysendPaymentSendParams as KeysendPaymentSendParams,
+  };
 }
