@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.8.3 (2025-06-27)
+
+Full Changelog: [v1.8.2...v1.8.3](https://github.com/zbdpay/zbd-payments-typescript-sdk/compare/v1.8.2...v1.8.3)
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([2467c75](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/2467c75db8f67b50b07961f4663e100c65e654a0))
+* **client:** get fetchOptions type more reliably ([65863ab](https://github.com/zbdpay/zbd-payments-typescript-sdk/commit/65863ab177cbd2c533306c5cc245c4002bdfe638))
+
 ## 1.8.2 (2025-06-21)
 
 Full Changelog: [v1.8.1...v1.8.2](https://github.com/zbdpay/zbd-payments-typescript-sdk/compare/v1.8.1...v1.8.2)
