@@ -35,8 +35,8 @@ export const tool: Tool = {
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  await client.internalTransfer.initiate(body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.internalTransfer.initiate(body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

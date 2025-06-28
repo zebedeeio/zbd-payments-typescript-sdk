@@ -30,8 +30,8 @@ export const tool: Tool = {
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   const { address, ...body } = args as any;
-  await client.lightningAddress.validate(address);
-  return asTextContentResult('Successful tool call');
+  const response = await client.lightningAddress.validate(address).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

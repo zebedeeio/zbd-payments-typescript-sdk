@@ -25,8 +25,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
-  await client.utils.retrieveBtcUsd();
-  return asTextContentResult('Successful tool call');
+  const response = await client.utils.retrieveBtcUsd().asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

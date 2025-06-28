@@ -25,8 +25,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
-  await client.utils.listProdIPs();
-  return asTextContentResult('Successful tool call');
+  const response = await client.utils.listProdIPs().asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

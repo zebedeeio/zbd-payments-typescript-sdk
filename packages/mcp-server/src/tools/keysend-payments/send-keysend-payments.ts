@@ -55,8 +55,8 @@ export const tool: Tool = {
 
 export const handler = async (client: ZbdPayments, args: Record<string, unknown> | undefined) => {
   const body = args as any;
-  await client.keysendPayments.send(body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.keysendPayments.send(body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
